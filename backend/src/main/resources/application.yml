@@ -52,10 +52,36 @@ application:
 
 # TODO below properties should be organised better
 
+sendTweetsViaScheduler: false
+
+#########
+
+security:
+  encryptPassword: 7582920264f212c566d5e5a6d
+  encryptSalt: 39783e315e6a207e733d6f4141
+
+imgurClientId:
+imgurClientSecret:
+
 bearerToken:
 idle: 3600000 #1 hour
 idleTimeout: 60
 
+wordpressBaseUrl:
+wordpressUsername:
+wordpressPassword:
 redirectUrl: http://localhost:8080/login/oauth2/client/buffer
+#spring.security.oauth2.client.registration.buffer.client-id:
+#spring.security.oauth2.client.registration.buffer.client-secret:
+bufferAccessToken:
+bufferTwitterProfileId:
+bufferFacebookProfileId:
 
-sendTweetsViaScheduler: false
+twitterConsumerKey:
+twitterConsumerSecret:
+
+twitterAccessToken:
+twitterAccessTokenSecret:
+
+facebookAppId:
+facebookAppSecret:
