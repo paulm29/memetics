@@ -1,7 +1,7 @@
 import { restClient } from "./rest.client";
-import { Meme } from "../../src-old/app/model/meme";
-import { QueueItem } from "../../src-old/app/model/queue.item";
-import { Profile } from "../../src-old/app/model/profile";
+import { Meme } from "../../src/app/model/meme";
+import { QueueItem } from "../../src/app/model/queue.item";
+import { Profile } from "../../src/app/model/profile";
 
 async function create(profile: Profile, meme: Meme, content: string, hashtags: string = null) {
   const queueItem = new QueueItem();

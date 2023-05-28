@@ -1,5 +1,5 @@
 import * as faker from "faker/locale/en_AU";
-import { Profile } from "../../src-old/app/model/profile";
+import { Profile } from "../../src/app/model/profile";
 
 
 export class ProfileData {

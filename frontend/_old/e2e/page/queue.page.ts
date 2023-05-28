@@ -3,8 +3,8 @@ import { HeaderPartPage } from "./header-part.page";
 import { elementById, elementByName, expectSuccess } from "../util/ui-util";
 import { enterTextInput } from "../util/form-util";
 import { waitForElementToStopMoving } from "../util/wait-util";
-import { Meme } from "../../src-old/app/model/meme";
-import { QueueItem } from "../../src-old/app/model/queue.item";
+import { Meme } from "../../src/app/model/meme";
+import { QueueItem } from "../../src/app/model/queue.item";
 
 const EC = protractor.ExpectedConditions;
 

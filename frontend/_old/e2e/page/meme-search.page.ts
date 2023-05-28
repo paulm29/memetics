@@ -1,6 +1,6 @@
 import { browser, by, element, protractor } from "protractor";
 import { HeaderPartPage } from "./header-part.page";
-import { Meme } from "../../src-old/app/model/meme";
+import { Meme } from "../../src/app/model/meme";
 import { clickButtonAndCheckNewWindow, elementById, expectSuccess } from "../util/ui-util";
 import { waitForElementToStopMoving } from "../util/wait-util";
 

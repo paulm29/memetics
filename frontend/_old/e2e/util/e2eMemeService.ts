@@ -1,5 +1,5 @@
 import { restClient } from "./rest.client";
-import { Meme } from "../../src-old/app/model/meme";
+import { Meme } from "../../src/app/model/meme";
 
 async function create(newMeme: Meme) {
   return restClient.post("/memes", newMeme);

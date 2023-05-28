@@ -1,9 +1,9 @@
 import * as faker from "faker/locale/en_AU";
-import { Meme } from "../../src-old/app/model/meme";
+import { Meme } from "../../src/app/model/meme";
 import { browser } from "protractor";
 import { ProfileData } from "./profile-data";
-import { Tag } from "../../src-old/app/model/tag";
-import { Profile } from "../../src-old/app/model/profile";
+import { Tag } from "../../src/app/model/tag";
+import { Profile } from "../../src/app/model/profile";
 
 export class MemeData {
 
