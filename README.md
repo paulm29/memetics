@@ -2,7 +2,11 @@
 Memetics is the shitposter's best friends. It helps you organise memes for posting to social media. 
 Only Twitter is supported at this time.
 
-Memetics is an Angular web application with a Spring backend
+Memetics is an Angular web application with a Spring backend.
+
+Review entities to get acquainted with the structure: [Entities](Entities.md)
+
+Note: it's an old project that is slowly being updated with latest releases.
 
 # Setup
 
@@ -10,7 +14,7 @@ Requirements:
 - Java 17
 - Gradle
 - Docker
-- Node
+- Node.js
 
 ## Postgres docker container
 
@@ -26,11 +30,13 @@ Written to:
 
 ## Development steps:
 
+### Backend
 You will need to create an application-private.yml file containing secrets and run with this profile.
 
+### Frontend
 For e2e tests, you many need to update protractor: `npm update protractor -g`
 
-### Run configurations:
+#### Run configurations:
 
 - build: npm configuration, set scripts = `build`
 - e2e: npm run local
@@ -47,3 +53,9 @@ Development cycle for front-end changes when app deployed through intellij is: m
 
 - To deploy just front end changes manually: `npm run build:dev`
 - You can also use `npm run build-watch` and rely on webpack automatically creating the bundle.
+
+# Todo
+
+1. Upgrade to latest Angular and NgRx
+2. Migrate from Protractor Angular
+3. Write new classes in Kotlin, migrate old ones
