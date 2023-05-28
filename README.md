@@ -34,6 +34,12 @@ Written to:
 You will need to create an application-private.yml file containing secrets and run with this profile.
 
 ### Frontend
+
+cd frontend
+ng serve
+
+Uses Angular Material, Sass
+
 For e2e tests, you many need to update protractor: `npm update protractor -g`
 
 #### Run configurations:
