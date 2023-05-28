@@ -2,7 +2,7 @@
 Memetics is the shitposter's best friends. It helps you organise memes for posting to social media. 
 Only Twitter is supported at this time.
 
-Memetics is a Angular web application with a Spring backend
+Memetics is an Angular web application with a Spring backend
 
 # Setup
 
@@ -26,11 +26,9 @@ Written to:
 
 ## Development steps:
 
-0. Change database connection settings in pom.xml, especially mysql.memetics.svc
-1. npm install
-2. mvn package
-3. set up the memetics-local run configuration in IDEA and run
-4. For e2e tests, you many need to update protractor: `npm update protractor -g`
+You will need to create an application-private.yml file containing secrets and run with this profile.
+
+For e2e tests, you many need to update protractor: `npm update protractor -g`
 
 ### Run configurations:
 

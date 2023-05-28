@@ -1,15 +1,11 @@
-application:
-  url: localhost:8080/memetics
-
 api:
   version: 1
 
 spring:
   profiles:
     active: production
-    # not using thymeleaf, so enable
     social:
-      auto-connection-views: true
+      auto-connection-views: true # not using thymeleaf, so enable
   main:
     banner-mode: "off"
     allow-bean-definition-overriding: true
@@ -45,39 +41,21 @@ spring:
         dialect: ${spring.jpa.database-platform}
     open-in-view: false
   liquibase:
-    changeLog: classpath:/db/changelog/db.changelog-master.xml
+    changeLog: classpath:changelog/db.changelog-master.xml
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-    enabled: false
+    enabled: true
 
-#hibernate:
-#  memetics:
-#    jdbcUrl: ${spring.datasource.url}
-#    username: ${spring.datasource.username}
-#    password: ${spring.datasource.password}
-#    driverClassName: ${spring.datasource.driver-class-name}
-#    dialect: ${spring.jpa.database-platform}
-#    format_sql: true
-#    show-sql: true
-##  hbm2ddl.auto: validate
-##  use-new-id-generator-mappings: true
+application:
+  url: localhost:8080/memetics
 
-  
-#  security.enabled=true
-#  #https://stackoverflow.com/questions/49258766/spring-boot-2-0-x-disable-security-for-certain-profile
-#
-#  #http://stackoverflow.com/questions/23894010/spring-boot-security-disable-security
-#  management.security.enabled=false
-#  #https://spring.io/blog/2015/01/12/spring-and-angular-js-a-secure-single-page-application
-#  #################################
-  
+# TODO below properties should be organised better
+
 bearerToken:
-#1 hour
-idle: 3600000
+idle: 3600000 #1 hour
 idleTimeout: 60
 
 redirectUrl: http://localhost:8080/login/oauth2/client/buffer
 
-# important - schedule
 sendTweetsViaScheduler: false
