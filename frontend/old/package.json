@@ -11,12 +11,12 @@
     "build:prod": "ng build --prod --base-href /memetics/",
     "test": "ng test",
     "lint": "ng lint --type-check",
-    "e2e": "webdriver-manager update ng e2e --no-serve -wu false",
-    "e2e-local": "ng e2e --no-serve -wu false --config protractor.conf.local-local.js",
+    "e2e": "webdriver-manager update ng ../e2e --no-serve -wu false",
+    "e2e-local": "ng ../e2e --no-serve -wu false --config protractor.conf.local-local.js",
     "e2e:ci": "npm run e2e; chmod -R a+w target/e2e-reports",
     "webdriver-manager": "webdriver-manager update",
     "karma": "ng test --karma-config karma.conf.js",
-    "update-build-version": "node ./node_modules/qcaa-ui/src/update-build-version.js src/environments/environment.prod.ts \"$MAVEN_PROJECT_NAME\" \"$MAVEN_PROJECT_VERSION\""
+    "update-build-version": "node ./node_modules/qcaa-ui/src/update-build-version.js ../src-old/environments/environment.prod.ts \\\\\\\"$MAVEN_PROJECT_NAME\\\\\\\" \\\\\\\"$MAVEN_PROJECT_VERSION\\\\\\\""
   },
   "private": true,
   "dependencies": {},

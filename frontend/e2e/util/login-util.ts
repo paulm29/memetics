@@ -2,7 +2,7 @@ import { browser, by } from "protractor";
 import { ProfileData } from "../data/profile-data";
 import { LoginPage } from "../page/login.page";
 import { MemeSearchPage } from "../page/meme-search.page";
-import { Profile } from "../../src/app/model/profile";
+import { Profile } from "../../src-old/app/model/profile";
 import { HeaderPartPage } from "../page/header-part.page";
 
 async function login(profile: Profile) {

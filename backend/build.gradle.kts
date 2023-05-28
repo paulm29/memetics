@@ -30,7 +30,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    //    testImplementation("org.springframework.security:spring-security-test:5.1.2.RELEASE")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -74,25 +73,15 @@ dependencies {
 
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv")
 
-//    api("jstl:jstl:1.2")
-//    api("javax.servlet.jsp:javax.servlet.jsp-api:2.3.3")
-//    api("org.infinispan:infinispan-spring4-embedded:9.4.5.Final")
-//    api("com.querydsl:querydsl-apt:4.2.1")
     implementation("org.scribe:scribe:1.3.7")
-//    api("xerces:xercesImpl:2.12.0")
-//    api("org.apache.commons:commons-lang3:3.8.1")
-//    api("commons-collections:commons-collections:3.2.2")
-//    api("javax.xml.bind:jaxb-api:2.3.1")
-//    testImplementation("org.springframework.boot:spring-boot-starter-test:2.1.1.RELEASE")
-//    testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
-//    testImplementation("org.dbunit:dbunit:2.6.0")
-//    testImplementation("io.rest-assured:spring-mock-mvc:3.2.0")
 
-//    testImplementation("com.xebialabs.restito:restito:0.9.3")
-//    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.3.2")
-//    testImplementation("org.junit.vintage:junit-vintage-engine:5.3.2")
-//    testImplementation("org.easytesting:fest-assert-core:2.0M10")
-//    compileOnly("javax.servlet:javax.servlet-api:4.0.1")
+
+    //    testImplementation("org.springframework.boot:spring-boot-starter-test:2.1.1.RELEASE")
+    //    testImplementation("org.springframework.security:spring-security-test:5.1.2.RELEASE")
+    //    testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+    //    testImplementation("org.dbunit:dbunit:2.6.0")
+    //    testImplementation("io.rest-assured:spring-mock-mvc:3.2.0")
+    //    testImplementation("com.xebialabs.restito:restito:0.9.3")
 }
 
 java {
