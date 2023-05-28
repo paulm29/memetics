@@ -1,0 +1,10 @@
+<div class="modal-body">
+  <span *ngIf="isDefaultMessage">Are you sure you want to remove the item?</span>
+  <span *ngIf="!isDefaultMessage">Are you sure you want to remove [<b>{{itemDescription}}</b>]?</span>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-sm btn-primary" type="submit" (click)="close(true)" id="removeConfirmationModalProceed">
+    Proceed
+  </button>
+  <button class="btn btn-sm btn-warning" type="button" (click)="close(false)">Cancel</button>
+</div>

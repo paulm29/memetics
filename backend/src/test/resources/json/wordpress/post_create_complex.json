@@ -1,0 +1,30 @@
+{
+  "author": 1,
+  "content": {
+    "rendered": "test",
+    "protected": false
+  },
+  "status": "draft",
+  "sticky": false,
+  "format": "standard",
+  "excerpt": {
+    "rendered": "excerpt",
+    "protected": false
+  },
+  "title": {
+    "rendered": "Top 10 stories"
+  }
+//,
+//  "comment_status": "open",
+//  "type": "post",
+//  "categories": [
+//    3
+//  ],
+//  "tags": [
+//
+//  ],
+//  "template": "",
+//  "meta": [
+//
+//  ]
+}

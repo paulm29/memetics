@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h1>{{title}}</h1>
+
+  <p>Stuff on this page:</p>
+  <ul>
+    <li>Trigger backup</li>
+    <li>Check Twitter rate limit</li>
+    <li>Check imgur credits</li>
+  </ul>
+
+  <h2>Check imgur credits</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-secondary" (click)="checkImgurCredits()">Check Imgur credits</button>
+      <div *ngIf="imgurCredits">
+        {{imgurCredits.data.data}}
+      </div>
+    </div>
+  </div>
+
+  <h2>Twitter rate limit</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-secondary" (click)="checkTwitterRateLimit()">Check Twitter rate limit</button>
+      <div *ngIf="twitterRateLimit">
+        {{twitterRateLimit}}
+      </div>
+    </div>
+  </div>
+
+  <h2>Trigger backup</h2>
+  <a (click)="backup()">Trigger backup</a>
+  <p>Uses c:\_backup - remember that it checks for existing images, and doesn't download them if they are already there.
+    So ensure you put any already backed-up images in c:\_backup before continuing.</p>
+</div>

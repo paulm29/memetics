@@ -1,0 +1,83 @@
+application:
+  url: localhost:8080/memetics
+
+api:
+  version: 1
+
+spring:
+  profiles:
+    active: production
+    # not using thymeleaf, so enable
+    social:
+      auto-connection-views: true
+  main:
+    banner-mode: "off"
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    jdbc-url: ${spring.datasource.url}
+    driver-class-name: org.postgresql.Driver
+    username: memetics
+    password: memetics
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      data-source-properties:
+        socketTimeout: 120
+        tcpKeepAlive: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      # Prevent spurious exception java.sql.SQLFeatureNotSupportedException:
+      # Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.
+      #
+      # References:
+      #
+      # [1] https://github.com/pgjdbc/pgjdbc/issues/1102
+      # [2] https://hibernate.atlassian.net/browse/HHH-12368
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.jdbc.time_zone: UTC
+      hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 400
+      javax.persistence.query.timeout: 10000
+      javax.persistence.lock.timeout: 10000
+      hibernate:
+        dialect: ${spring.jpa.database-platform}
+    open-in-view: false
+  liquibase:
+    changeLog: classpath:/db/changelog/db.changelog-master.xml
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    enabled: false
+
+#hibernate:
+#  memetics:
+#    jdbcUrl: ${spring.datasource.url}
+#    username: ${spring.datasource.username}
+#    password: ${spring.datasource.password}
+#    driverClassName: ${spring.datasource.driver-class-name}
+#    dialect: ${spring.jpa.database-platform}
+#    format_sql: true
+#    show-sql: true
+##  hbm2ddl.auto: validate
+##  use-new-id-generator-mappings: true
+
+  
+#  security.enabled=true
+#  #https://stackoverflow.com/questions/49258766/spring-boot-2-0-x-disable-security-for-certain-profile
+#
+#  #http://stackoverflow.com/questions/23894010/spring-boot-security-disable-security
+#  management.security.enabled=false
+#  #https://spring.io/blog/2015/01/12/spring-and-angular-js-a-secure-single-page-application
+#  #################################
+  
+bearerToken:
+#1 hour
+idle: 3600000
+idleTimeout: 60
+
+redirectUrl: http://localhost:8080/login/oauth2/client/buffer
+
+# important - schedule
+sendTweetsViaScheduler: false

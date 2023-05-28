@@ -1,0 +1,11 @@
+.alert {
+    margin-bottom: 0;
+}
+
+.alert-fixed {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    position: fixed;
+    z-index: 99999;
+}

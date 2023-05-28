@@ -1,0 +1,116 @@
+<dataset>
+	<meme meme_id="1"
+          profile_id="11"
+          title="title1"
+          credits="credits1"
+          caption="caption1"
+          original_content="0"
+          url="http://"
+          delete_link="http://"
+          usage_count="1"
+          duplicate="2"
+          created_date="1970-01-01 10:00:00"
+          modified_date="1970-01-01 10:00:00"
+	/>
+    <meme meme_id="2"
+          profile_id="11"
+          title="title2"
+          credits="credits2"
+          caption="caption2"
+          original_content="1"
+          url="http://"
+          delete_link="http://"
+          usage_count="2"
+          duplicate="0"
+          created_date="1970-01-01 10:00:00"
+          modified_date="1970-01-01 10:00:00"
+    />
+    <meme meme_id="3"
+          profile_id="12"
+          title="title3"
+          credits="credits3"
+          caption="caption3"
+          original_content="0"
+          url="http://"
+          delete_link="http://"
+          usage_count="3"
+          duplicate="0"
+          created_date="1970-01-01 10:00:00"
+          modified_date="1970-01-01 10:00:00"
+    />
+
+    <vote vote_id="1"
+           meme_id="1"
+           profile_id="11"
+           score="1"
+    />
+
+    <vote vote_id="2"
+          meme_id="1"
+          profile_id="12"
+          score="-1"
+    />
+
+    <comment
+        comment_id="111"
+        profile_profile_id="11"
+        meme_id="1"
+        comment_text="a comment"
+        created_date="1970-01-01 10:00:00"
+        modified_date="1970-01-01 10:00:00"
+    />
+
+    <comment
+            comment_id="112"
+            profile_profile_id="12"
+            meme_id="1"
+            comment_text="b comment"
+            created_date="1970-01-01 10:00:00"
+            modified_date="1970-01-01 10:00:00"
+    />
+    <comment
+            comment_id="113"
+            profile_profile_id="12"
+            meme_id="2"
+            comment_text="c comment"
+            created_date="1970-01-01 10:00:00"
+            modified_date="1970-01-01 10:00:00"
+    />
+
+    <tag tag_id="1"
+         name="atag"
+    />
+
+    <tag tag_id="2"
+         name="atag_subcategory"
+    />
+
+    <tag tag_id="3"
+         name="btag"
+    />
+
+    <tag tag_id="4"
+         name="ctag"
+    />
+
+    <meme_tag
+            meme_id="1"
+            tag_id="1"
+    />
+
+    <meme_tag
+            meme_id="1"
+            tag_id="2"
+    />
+
+    <meme_tag
+            meme_id="1"
+            tag_id="3"
+    />
+
+    <meme_tag
+            meme_id="2"
+            tag_id="3"
+    />
+
+</dataset>

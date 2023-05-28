@@ -1,0 +1,35 @@
+{
+  "id": 11,
+  "accountNonExpired": false,
+  "accountNonLocked": false,
+  "city": "city",
+  "country": "country",
+  "createdDate": "2017-04-13T12:07:07Z",
+  "credentialsNonExpired": false,
+  "enabled": true,
+  "email": "profile11@email.com",
+  "firstName": "updated_firstName",
+  "following":[
+    {
+      "id": 1,
+      "follower":{"id":11,"username":"profile11@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile11@email.com","nickname":"nickname1","country":"","firstName":"First1","lastName":"Last1","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile11@email.com"},
+      "following":{"id":13,"username":"profile12@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile12@email.com","nickname":"nickname2","country":"","firstName":"First2","lastName":"Last2","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile12@email.com"}
+    },
+    {
+      "follower":{"id":11,"username":"profile11@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile11@email.com","nickname":"nickname1","country":"","firstName":"First1","lastName":"Last1","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile11@email.com"},
+      "following":{"id":12,"username":"profile12@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile12@email.com","nickname":"nickname2","country":"","firstName":"First2","lastName":"Last2","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile12@email.com"}
+    }
+  ],
+  "followers": [],
+  "lastName": "updated_lastName",
+  "modifiedDate": "2017-04-13T12:07:07Z",
+  "nickname": "updated_nickname",
+  "role": "ROLE_ADMIN",
+  "socialMediaSignin": "TWITTER",
+  "state": "state",
+  "userId": "string",
+  "username": "profile11@email.com",
+  "twitter": true,
+  "version": 0,
+  "webSite": "webSite"
+}

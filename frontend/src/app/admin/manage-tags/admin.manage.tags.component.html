@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <h1>Manage tags</h1>
+
+  {{allTags?.length}} tags found.
+  <ng2-smart-table [settings]="settings" [source]="source"
+                   (userRowSelect)="onUserRowSelect($event)"
+                   (createConfirm)="onCreateConfirm($event)"
+                   (editConfirm)="onEditConfirm($event)"
+                   (deleteConfirm)="onDeleteConfirm($event)"
+  ></ng2-smart-table>
+
+  <h2>Tag stats</h2>
+
+
+  <p>{{tagStats.length}} tags</p>
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tagStat of tagStats">
+          <td>
+            {{tagStat.text}}
+          </td>
+          <td>{{tagStat.weight}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Unused tags</h2>
+  Warning: no confirmation! (not a big deal, cuz unused)
+  <table>
+    <tr *ngFor="let tag of unusedTags">
+      <td>{{tag.name}}</td>
+      <td><a (click)="deleteTag(tag.id)">Delete</a></td>
+    </tr>
+  </table>
+</div>

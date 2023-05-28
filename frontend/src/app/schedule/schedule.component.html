@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <mm-navbar [profile]="profile"></mm-navbar>
+  <h1>{{title}}</h1>
+
+  <form #searchForm="ngForm" class="form-horizontal" novalidate autocomplete="off">
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="btn-group">
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Sunday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Sunday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Monday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Monday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Tuesday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Tuesday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Wednesday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Wednesday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Thursday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Thursday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Friday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Friday</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.Saturday" btnCheckbox
+                 (ngModelChange)="scheduleDay()" name="Sunday">Saturday</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <p *ngIf="schedule?.days.length">Post on these days: <b>{{schedule.days.join(", ")}}</b></p>
+        <p *ngIf="schedule?.days.length === 0">Select day(s) to schedule</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3">
+        <timepicker *ngIf="newTime" id="timepicker-newTime" [(ngModel)]="newTime" [hourStep]="hourStep"
+                    [minuteStep]="minuteStep" name="timepicker"></timepicker>
+        <button id="addTime" name="addTime" class="btn btn-secondary" (click)="addTime()">Add time slot</button>
+      </div>
+      <div class="col-sm-9">
+        Note: times should be at least 10 minutes apart. Only 1 tweet will be sent within a 10-minute period.
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="schedule?.times.length === 0">
+      <div class="col-sm-12">No tweets in queue</div>
+    </div>
+
+    <div class="form-group" *ngIf="schedule?.times.length > 0">
+      <div class="col-sm-12">
+        <table class="table-striped">
+          <tr *ngFor="let time of schedule.times; let i=index">
+            <td class="col-xs-3 align-middle">
+              {{time}}
+              <!--<timepicker *ngIf="time" id="timepicker{{i}}" [(ngModel)]="time" [hourStep]="hourStep" [minuteStep]="minuteStep"></timepicker>-->
+            </td>
+            <td class="col-xs-offset-1 col-xs-8 align-middle">
+              <a (click)="removeTime(i)"
+                 class="btn btn-secondary"
+                 tooltip="Remove from queue"
+                 container="body"><i class="glyphicon glyphicon-minus"></i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </form>
+
+  <mm-navbar [profile]="profile"></mm-navbar>
+</div>

@@ -1,0 +1,147 @@
+<ng-container *ngIf="profile === null">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand">Memetics</a>
+  </nav>
+</ng-container>
+
+<ng-container *ngIf="profile">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['/profile', profile.id, 'home']">Memetics</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Memes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/profile', profile.id, 'meme-search']">Search</a>
+            <a class="dropdown-item" routerLinkActive="active"
+               [routerLink]="['/profile', profile.id, 'meme-slideshow']">Slideshow</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/profile', profile.id, 'meme-new']">Create
+              new meme</a>
+          </div>
+        </li>
+
+        <ng-container *appIsAdmin>
+          <li *appIsTwitterAccount class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="queueDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Queue <span class="fa fa-calendar"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="queueDropdown">
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'queue']">Queue</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'schedule']">Schedule</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <ng-container *appIsAdmin>
+          <li *appIsTwitterAccount class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="statsDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Stats <span class="fa fa-bar-chart"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="statsDropdown">
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'retweets']">Retweets</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'tweets']">Tweets</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'tweets-memetics']">Tweets via
+                Memetics</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <ng-container *appIsAdmin>
+
+          <li *appIsTwitterAccount class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="publishingDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Publishing <span class="fa fa-newspaper-o"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="publishingDropdown">
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'embed-tweet']">Embed tweet link</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'wordpress']">Wordpress</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'newsletter']">Newsletter</a>
+            </div>
+          </li>
+        </ng-container>
+
+
+        <ng-container *appIsAdmin>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="importDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Import <span class="fa fa-file"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="importDropdown">
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'bulkUpload']">Bulk upload</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'memeProcess']">Process memes</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <ng-container *appIsAdmin>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="utilityDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Utility <span class="fa fa-pencil"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="utilityDropdown">
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'download-liked']">Download images from
+                liked tweets</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'delete-liked']">Delete liked tweets</a>
+              <a class="dropdown-item" [routerLink]="['/profile', profile.id, 'delete-liked']">Delete unpopular tweets
+                (TODO)</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <ng-container *appIsAdmin>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Admin <span class="fa fa-lock"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+              <a class="dropdown-item" [routerLink]="['/admin']">Admin</a>
+              <a class="dropdown-item" [routerLink]="['/admin-manage-users']">Manage users</a>
+              <a class="dropdown-item" [routerLink]="['/admin-manage-tags']">Manage tags</a>
+              <a class="dropdown-item" [routerLink]="['/admin-manage-memes']">Manage memes</a>
+            </div>
+          </li>
+        </ng-container>
+
+      </ul>
+
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="myProfileDropdown" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            My Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="myProfileDropdown">
+            <a class="dropdown-item" name="profileViewHeader" id="profileViewHeader{{profile.id}}"
+               [routerLink]="['/profile', profile.id, 'profile-view', profile.id]">{{profile.nickname}}</a>
+            <a class="dropdown-item" id="logout" name="logout" (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <mm-idle></mm-idle>
+</ng-container>
+
+<div class="container-fluid">
+  <app-alert></app-alert>
+</div>
+

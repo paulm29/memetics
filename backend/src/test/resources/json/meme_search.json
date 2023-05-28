@@ -1,0 +1,13 @@
+{
+  "myMemes": "y",
+  "profileId": 1,
+  "username": "",
+  "title": "",
+  "credits": "",
+  "tags": [
+    {
+      "id": "1",
+      "name": "atag"
+    }
+  ]
+}

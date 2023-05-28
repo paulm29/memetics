@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <mm-navbar [profile]="profile"></mm-navbar>
+    <h1>{{title}}</h1>
+
+    <div *ngIf="!profile.following.length">Not following anyone.</div>
+
+    <!--<div *ngIf="profile.following.length" ui-scroll-viewport class="viewport" id="viewport-serviceDatasource" style="height: 600px">-->
+        <!--<div ui-scroll="let follow of datasource" class="item">-->
+            <!--<p><a [routerLink]="['/profile', profile.id, 'profile-view', follow.following.id]">{{follow.following.nickname}}</a></p>-->
+            <!--<br/>-->
+            <!--<br/>-->
+            <!--<br/>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <mm-navbar [profile]="profile"></mm-navbar>
+</div>

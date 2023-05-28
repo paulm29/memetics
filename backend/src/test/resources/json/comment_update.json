@@ -1,0 +1,11 @@
+{
+  "id": 111,
+  "memeId": 1,
+  "profile": {
+    "id": 11
+  },
+  "meme": {
+    "id": 1
+  },
+  "commentText": "updated comment"
+}

@@ -1,0 +1,6 @@
+<div *ngIf="profile.id === comment.profile.id" class="btn-group" role="group">
+  <a (click)="editComment()" class="btn btn-sm btn-secondary" tooltip="Edit" container="body" role="button" href><i
+    class="glyphicon glyphicon-pencil"></i></a>
+  <a (click)="deleteComment()" class="btn btn-sm btn-secondary" tooltip="Delete" container="body" role="button" href><i
+    class="glyphicon glyphicon-remove"></i></a>
+</div>

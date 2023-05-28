@@ -1,0 +1,33 @@
+{
+  "hashtag": "xyz",
+    "profile": {
+      "username": "string",
+      "accountNonExpired": false,
+      "accountNonLocked": false,
+      "credentialsNonExpired": false,
+      "enabled": false,
+      "id": 11,
+      "email": "string",
+      "nickname": "string",
+      "country": "string",
+      "firstName": "string",
+      "lastName": "string",
+      "city": "string",
+      "state": "string",
+      "webSite": "string",
+      "modifiedDate": "2017-08-13T10:35:08.135Z",
+      "createdDate": "2017-08-13T10:35:08.135Z",
+      "role": "ROLE_USER",
+      "socialMediaSignin": "FACEBOOK",
+      "version": 0,
+      "following": [
+      ],
+      "followers": [
+      ],
+      "hashtagFavourites": [
+      ],
+      "twitter": false,
+      "userId": "string"
+    }
+  }
+}

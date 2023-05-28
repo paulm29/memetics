@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <h1 *ngIf="!loading">Login</h1>
+
+  <hr/>
+
+  <div *ngIf="!loading && !isLoggedIn()">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Sign in with social media</h3>
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="auth/twitter">
+              <button id="signinTwitter" class="btn btn-twitter"><span class="fa fa-twitter"></span> | Sign in with
+                Twitter
+              </button>
+            </a>
+            &nbsp;
+            <a href="auth/facebook">
+              <button id="signinFacebook" class="btn btn-facebook"><span class="fa fa-facebook"></span> | Sign in with
+                Facebook
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div *ngIf="!loading && !isLoggedIn()">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Sign in using email</h3>
+
+        <form #loginForm="ngForm" (submit)="login()" autocomplete="off" novalidate>
+
+          <div class="row form-group offset-sm-1 has-danger" *ngIf="credentialsError">
+            <span id="credentialsError" class="text-danger">Invalid username or password</span>
+          </div>
+          <div class="row form-group offset-sm-1 has-danger" *ngIf="error">
+            <span class="text-danger">An error occurred</span>
+          </div>
+
+          <div class="row">
+            <div appShowValidation class="form-group col-sm-4" [ngClass]="{ 'has-danger': credentialsError }">
+              <label class="control-label" for="username">Email</label>
+              <input id="username"
+                     name="username"
+                     class="form-control"
+                     required
+                     [(ngModel)]="credentials.username"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div appShowValidation class="form-group col-sm-4" [ngClass]="{ 'has-danger': credentialsError }">
+              <label class="control-label" for="password">Password</label>
+              <input id="password" name="password" type="password" class="form-control"
+                     required
+                     [(ngModel)]="credentials.password"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <button [disabled]="!canSubmit()" id="signinStandard" class="btn btn-primary">Sign in
+                <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+              </button>
+              &nbsp;<a [routerLink]="['/registration']" id="register-email">Create email account</a>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>

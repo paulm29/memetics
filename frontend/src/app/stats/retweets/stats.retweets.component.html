@@ -1,0 +1,182 @@
+<div class="container-fluid">
+  <h1>{{title}}</h1>
+
+  <h2>Blog top tweets from date</h2>
+
+  <app-stats-retweets-publish [profile]="profile"></app-stats-retweets-publish>
+
+  <hr/>
+
+  <h3>Search retweets</h3>
+  <p>Sorted by retweets, then likes. Although I am not totally convinced this is the best ordering...</p>
+  <form #retweetsForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" novalidate autocomplete="off">
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6">
+        <label for="notRetweeted">
+          <input type="checkbox"
+                 id="notRetweeted"
+                 name="notRetweeted"
+                 [(ngModel)]="notRetweeted"
+          />
+          Not retweeted</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">Minimum age (hours)</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="minimumAgeHours"
+               (ngModelChange)="getTimeNowMinusMinimum()"
+               name="minimumAgeHours"
+               maxlength="2"
+               id="minimumAgeHours" />
+      </div>
+      <div class="col-sm-7">Default 4</div>
+    </div>
+
+      <hr/>
+
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="startDate">Start date</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [maxDate]="today"
+               #dp="bsDatepicker"
+               id="startDate"
+               name="startDate"
+               bsDatepicker [(bsValue)]="startDate">
+      </div>
+      <div class="col-sm-7">known issue about default value not displaying:
+        https://github.com/valor-software/ngx-bootstrap/issues/2929
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">Start time - optional</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="startTime"
+               name="startTime"
+               maxlength="5"
+               id="time" />
+      </div>
+      <div class="col-sm-7">Default start date is 1 days ago, at 20:30pm. Note: leave out the colon, e.g. 2030, not
+        20:30
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="endDate">End date</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [maxDate]="today"
+               #dp="bsDatepicker"
+               id="endDate"
+               name="endDate"
+               bsDatepicker [(bsValue)]="endDate">
+      </div>
+      <div class="col-sm-7">default now, {{endDate | date:'dd/MM/yyyy hh:mm:ss'}}</div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">End time - optional</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="endTime"
+               name="time"
+               maxlength="5"
+               id="endTime" />
+      </div>
+      <div class="col-sm-7"></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="count">Count:</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="count"
+               name="count"
+               maxlength="4"
+               id="count" placeholder="200"/>
+      </div>
+      <div class="col-sm-7">Default start date is 1 days ago, at 8:30pm. Use at least 1000 to get a week's tweets.
+        roughly 140 tweets a day, but not all of them will be retweeted, so perhaps 700-1000
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-3">
+        <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Search <span
+          *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="retweets?.mostPopularList">
+    <p><b>{{retweets?.mostPopularList.length}} tweets returned.</b></p>
+  </div>
+
+  <div *ngIf="retweets?.mostPopularList">
+    <ng2-smart-table *ngIf="retweets?.mostPopularList" id="retweetsMostPopularList" [settings]="settings"
+                     [source]="source"></ng2-smart-table>
+  </div>
+
+
+  <div *ngFor="let stat of retweets?.mostPopularList; let i=index">
+    <div class="row">
+      <div class="col-sm-12">{{stat.id}}</div>
+    </div>
+  </div>
+
+  <!--<div *ngIf="retweets?.mostPopularList">-->
+  <!--<p><b>{{retweets?.mostPopularList.length}} tweets returned.</b></p>-->
+  <!--</div>-->
+
+  <!--<div *ngFor="let stat of retweets?.mostPopularList; let i=index">-->
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">{{i + 1}} Link:</div>-->
+  <!--<div class="col-sm-11"><a href="https://twitter.com/aupol_news/status/{{stat.id}}">Link</a></div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Title:</div>-->
+  <!--<div class="col-sm-11"><b>{{stat.text}}</b></div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Total:</div>-->
+  <!--<div class="col-sm-11">{{stat.retweetCount + stat.favoriteCount}}</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Retweets:</div>-->
+  <!--<div class="col-sm-11">{{stat.retweetCount}}</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Likes:</div>-->
+  <!--<div class="col-sm-11">{{stat.favoriteCount}}</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Retweeted by me:</div>-->
+  <!--<div class="col-sm-11"><b *ngIf="!stat.retweeted">{{stat.retweeted}}</b><span *ngIf="stat.retweeted">{{stat.retweeted}}</span></div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Replies:</div>-->
+  <!--<div class="col-sm-11">Get replies: </div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-sm-1">Created:</div>-->
+  <!--<div class="col-sm-11">{{stat.createdAt | date : "EEEE dd/MM/yyyy h:m a"}}</div>-->
+  <!--</div>-->
+
+  <!--<hr/>-->
+  <!--</div>-->
+</div>

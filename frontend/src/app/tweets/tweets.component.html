@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <h1>{{title}}</h1>
+  <form #retweetsForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" novalidate autocomplete="off">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="startDate">Start date</label>
+      <div class="col-sm-3">
+        <!--<app-date-picker #retweetStartDatePicker="DatePickerComponent"-->
+        <!--id="retweetEndDateComponent"-->
+        <!--[id]="'retweetEndDateDate'"-->
+        <!--[name]="'retweetEndDate'"-->
+        <!--[minDate]=""-->
+        <!--[maxDate]="today"-->
+        <!--[(model)]="startDate"-->
+        <!--[parentForm]="retweetsForm"></app-date-picker>-->
+        <input type="text"
+               class="form-control"
+               [maxDate]="today"
+               #dp="bsDatepicker"
+               id="startDate"
+               name="startDate"
+               bsDatepicker [(bsValue)]="startDate">
+      </div>
+      <div class="col-sm-7">known issue about default value not displaying: https://github.com/valor-software/ngx-bootstrap/issues/2929</div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">Time - optional</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="time"
+               name="time"
+               maxlength="5"
+               id="time" placeholder="hh:mm" />
+      </div>
+      <div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">max retweets</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="maxRetweets"
+               name="maxRetweets"
+               maxlength="5"
+               id="maxRetweets" />
+      </div>
+      <div class="col-sm-7"></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="time">max likes</label>
+      <div class="col-sm-3">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="maxLikes"
+               name="maxLikes"
+               maxlength="5"
+               id="maxLikes" />
+      </div>
+      <div class="col-sm-7"></div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3">
+        <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Search <span
+          *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  <div *ngIf="tweets?.mostPopularList">
+    <p><b>{{tweets?.mostPopularList.length}} tweets returned.</b></p>
+  </div>
+
+  <div *ngFor="let stat of tweets?.mostPopularList">
+    <div class="row">
+      <div class="col-sm-1">Link:</div>
+      <div class="col-sm-11"><a href="https://twitter.com/aupol_news/status/{{stat.id}}">Link</a></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">Title:</div>
+      <div class="col-sm-11"><b>{{stat.text}}</b></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">Likes:</div>
+      <div class="col-sm-11">{{stat.favoriteCount}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">Retweets:</div>
+      <div class="col-sm-11">{{stat.retweetCount}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">Created:</div>
+      <div class="col-sm-11">{{stat.createdAt | date : "EEEE dd/MM/yyyy hh:mm a"}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">Status ID search:</div>
+      <div class="col-sm-11">{{stat.id}}</div>
+    </div>
+
+    <hr/>
+  </div>
+
+</div>

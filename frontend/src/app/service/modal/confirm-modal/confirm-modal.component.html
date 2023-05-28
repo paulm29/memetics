@@ -1,0 +1,8 @@
+<div class="modal-body">
+  <span [innerHtml]="message"></span>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-sm btn-default" type="button" (click)="close(false)">{{cancelBtnText}}</button>
+  <button class="btn btn-sm btn-success" type="submit" (click)="close(true)"
+          id="confirmModalProceed">{{okBtnText}}</button>
+</div>

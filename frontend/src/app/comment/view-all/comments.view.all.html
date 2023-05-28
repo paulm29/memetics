@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <mm-navbar [profile]="profile"></mm-navbar>
+    <h1>{{title}}</h1>
+
+    <div *ngIf="!ctrl.comments.length">No comments yet.</div>
+
+  // TODO
+
+  <div class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollUpDistance]="1.5"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onScrollDown()"
+       (scrolledUp)="onScrollUp()">
+  </div>
+
+    <div *ngIf="comments.length" ui-scroll-viewport class="viewport" id="viewport-serviceDatasource" style="height: 600px">
+        <div ui-scroll="comment in ctrl.datasource" class="item">
+            <p>
+                <span><b>Posted:</b> {{comment.createdDate | date : "dd/MM/yyyy" }}</span>
+                <span><b>Author:</b> <a [routerLink]="['/profile', profile.id, 'profile-view', comment.profile.id]">{{comment.profile.nickname}}</a></span>
+            </p>
+            <p>
+                <span><b>Comment:</b> {{comment.commentText}}</span>
+            </p>
+            <p>
+               <a [routerLink]="['/profile', profile.id, 'meme-view', comment.memeId]">Meme link</a>
+            </p>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <mm-navbar [profile]="profile"></mm-navbar>
+</div>

@@ -1,0 +1,33 @@
+@import "../../../../variables";
+
+.error-display {
+  margin: 0;
+
+  > div {
+    margin-bottom: 10px;
+  }
+
+  .title {
+    color: $strongRed;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .message {
+    margin-top: 5px;
+  }
+
+}
+
+.error-modal-body {
+  padding: 0;
+}
+
+.error-close-button {
+  background: none !important;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+  cursor: pointer;
+}

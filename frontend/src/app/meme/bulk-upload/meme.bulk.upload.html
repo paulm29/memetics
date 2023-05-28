@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <h1>{{title}}</h1>
+    <p>Note:</p>
+    <ul>
+        <li>Upload Folder: Tag will be folder name if "Use folder name as tag" checked. Filenames will be become titles. If you untick, "unprocessed" will be used.</li>
+        <li>Unprocessed has a special queue for adding metadata more efficiently.</li>
+        <li>Drag and drop will use a weird tag name. TODO: change to "unprocessed"</li>
+        <li>If a file fails to upload, try the <b>Retry</b> option</li>
+    </ul>
+    <form name="profileForm" class="form-horizontal" novalidate>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="folderNameAsTag">
+                    <input type="checkbox"
+                           id="folderNameAsTag"
+                           name="folderNameAsTag"
+                           [(ngModel)]="folderNameAsTag"
+                    />
+                    Use folder name as tag</label>
+            </div>
+        </div>
+
+        <div flow-init="{target: 'upload', testChunks:false}" flow-files-submitted="upload($flow)" flow-complete="uploadComplete()">
+            <div class="drop" flow-drop ng-class="dropClass">
+                <span class="btn-group" role="group">
+                    <span class="btn btn-primary" flow-btn flow-directory
+                          *ngIf="$flow.supportDirectory">Upload Folder</span>
+                    <span class="btn btn-secondary" flow-btn>Upload File</span>
+                </span>
+                <b>OR</b>
+                Drag And Drop your file here
+            </div>
+
+            <br/>
+
+            <div class="well">
+                <a class="btn btn-small btn-success" (click)="$flow.resume()">Resume all</a>
+                <a class="btn btn-small btn-danger" (click)="$flow.pause()">Pause all</a>
+                <a class="btn btn-small btn-info" (click)="$flow.cancel()">Cancel all</a>
+                <span class="label label-info">Total Size: {{$flow.getSize()}}bytes</span>
+            </div>
+
+            <div>
+                <div *ngFor="file in $flow.files" class="transfer-box">
+                    <br/>
+                    <br/>
+                    {{file.relativePath}} ({{file.size}}bytes)
+                    <div class="progress progress-striped" [ngClass]="{active: file.isUploading()}">
+                        <div class="progress-bar" role="progressbar"
+                             aria-valuenow="{{file.progress() * 100}}"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             ng-style="{width: (file.progress() * 100) + '%'}">
+                            <span class="sr-only">{{file.progress()}}% Complete</span>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-xs btn-warning" (click)="file.pause()"
+                           *ngIf="!file.paused && file.isUploading()">
+                            Pause
+                        </a>
+                        <a class="btn btn-xs btn-warning" (click)="file.resume()" *ngIf="file.paused">
+                            Resume
+                        </a>
+                        <a class="btn btn-xs btn-danger" (click)="file.cancel()">
+                            Cancel
+                        </a>
+                        <a class="btn btn-xs btn-info" (click)="file.retry()" *ngIf="file.error">
+                            Retry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

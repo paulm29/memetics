@@ -1,0 +1,8 @@
+<app-mm-meme-form *ngIf="meme && profile"
+                  [formTitle]="title"
+                  [profile]="profile"
+                  [meme]="meme"
+                  (submitHandler)="update(meme)"
+                  (deleteHandler)="confirmDelete()"
+                  [submitText]="'Update'"
+                  [loading]="loading"></app-mm-meme-form>

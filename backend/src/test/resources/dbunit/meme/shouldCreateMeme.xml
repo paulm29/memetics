@@ -1,0 +1,15 @@
+<dataset>
+    <profile
+            profile_id="11"
+            email="profile11@email.com"
+            first_name="First1"
+            last_name="Last1"
+            nickname="nickname1"
+            country="Australia"
+            password="password1"
+            role="ROLE_ADMIN"
+            sign_in_provider="TWITTER"
+            created_date="1970-01-01 10:00:000"
+            modified_date="1970-01-01 10:00:000"
+    />
+</dataset>

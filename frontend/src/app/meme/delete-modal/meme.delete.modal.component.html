@@ -1,0 +1,18 @@
+<div class="modal-body">
+    <div class="container-fluid">
+        <p><span>Are you sure you want to delete the meme?</span></p>
+        <label for="deleteFromImgur">
+            <input type="checkbox"
+                   id="deleteFromImgur"
+                   name="deleteFromImgur"
+                   [(ngModel)]="deleteFromImgur"
+            />
+            Also delete image from imgur?</label>
+    </div>
+</div>
+<div class="modal-footer">
+  <button id="deleteConfirm" class="btn btn-primary" type="button" (click)="close(true)" name="memeDeleteModalAccept">
+    Delete
+  </button>
+  <button id="close" class="btn btn-warning" type="button" (click)="close(false)">Cancel</button>
+</div>

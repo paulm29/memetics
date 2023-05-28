@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <h1>Meme search</h1>
+
+  <div class="row">
+    <div class="col-sm-6">
+
+      <form #searchForm="ngForm" (ngSubmit)="searchForm.value" class="form-horizontal" novalidate autocomplete="off">
+        <div class="row form-group">
+          <div class="offset-2 col-sm-6">
+            <label for="myMemes">
+              <input type="checkbox"
+                     id="myMemes"
+                     name="myMemes"
+                     [ngModel]="criteria.myMemes"
+                     (ngModelChange)="setMyMemes($event)"
+              />
+              My memes</label>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label"><b>Tags</b></label>
+          <div class="col-sm-6">
+            <app-meme-tags-typeahead [(selectedTags)]="selectedTags"></app-meme-tags-typeahead>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label" for="title"><b>Title</b></label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="title"
+                   name="title"
+                   [(ngModel)]="criteria.title"
+                   maxlength="100"
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label" for="nickname"><b>Nickname</b></label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="nickname"
+                   name="profile"
+                   maxlength="100"
+                   [(ngModel)]="criteria.nickname"
+                   [disabled]="criteria.myMemes === true"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="offset-sm-2 col-sm-6">
+                <span class="btn-group pull-right" role="group">
+                    <button id="search" name="search" class="btn btn-sm btn-primary" [disabled]="!searchForm.form.valid"
+                            (click)="search()">Search <span *ngIf="loading"
+                                                            class="fa fa-spinner fa-spin"></span></button>
+                    <button id="clear" name="clear" class="btn btn-sm btn-secondary" (click)="clear()">Clear</button>
+                    <button id="export" class="btn btn-sm btn-secondary" (click)="export()">Export</button>
+                </span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+
+      <ng-container *ngIf="tagStats?.length">
+        Tag cloud
+        <app-mm-tag-cloud [cloudData]="tagStats"></app-mm-tag-cloud>
+      </ng-container>
+
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-sm-12"></div>
+  </div>
+
+  <ng-container *ngIf="!memes || ((memes.length === 0) && !loading)">
+    <div class="row" id="noResults">
+      <div class="offset-sm-1 col-sm-5">No memes to display.</div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="memes?.length">
+    <div class="row">
+      <div class="col-sm-6">{{memes.length}} of {{totalResultsCount}} memes displayed.</div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="memes?.length" class="search-results">
+    <ng2-smart-table id="studentSearchResults" [settings]="settings" [source]="memes"></ng2-smart-table>
+  </div>
+
+</div>

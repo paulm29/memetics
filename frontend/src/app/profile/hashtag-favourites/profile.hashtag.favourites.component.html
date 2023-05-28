@@ -1,0 +1,23 @@
+<h4>Favourite hashtags</h4>
+<form #favouriteHashtagForm="ngForm" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="favouriteHashtag">Hashtag</label>
+        <div class="col-sm-3">
+            <input id="favouriteHashtag" name="favouriteHashtag" type="text" ngModel/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-3">
+            <button (click)="addFavouriteHashtag(favouriteHashtagForm)">Add</button>
+        </div>
+    </div>
+</form>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <span *ngIf="!profile.hashtagFavourites.length">No favourite hashtags yet.</span>
+        <ul>
+            <li *ngFor="let tag of profile.hashtagFavourites">{{tag.hashtag}} <a
+                    (click)="removeFavouriteHashtag(tag.id)" href>Remove</a></li>
+        </ul>
+    </div>
+</div>

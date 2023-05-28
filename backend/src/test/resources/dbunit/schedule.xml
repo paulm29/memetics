@@ -1,0 +1,18 @@
+<dataset>
+    <schedule schedule_id="1"
+              profile_id="11"
+              created_date="1970-01-01 10:00:00"
+              modified_date="1970-01-01 10:00:00"
+    />
+
+    <schedule_day day_id="1"
+                  schedule_id="1"
+                  day="SUNDAY"
+    />
+
+    <!-- 1am -->
+    <schedule_time time_id="1"
+                   schedule_id="1"
+                   time="CURRENT_TIME"
+    />
+</dataset>

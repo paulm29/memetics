@@ -1,0 +1,11 @@
+<div class="modal-body error-modal-body">
+  <div class="error-display callout-attention">
+    <button (click)="close()" id="closeErrorModalButton" class="error-close-button pull-right">
+      <i class="fa fa-times"></i>
+    </button>
+    <div>
+      <div class="title">{{ title }}</div>
+      <div [innerHtml]="message"></div>
+    </div>
+  </div>
+</div>

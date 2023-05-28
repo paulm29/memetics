@@ -1,0 +1,35 @@
+<div *ngIf="newPostUrl">New post: <a href="{{newPostUrl}}">New post</a></div>
+<form #retweetsPublishForm="ngForm" class="form-horizontal" (ngSubmit)="publishRetweets()" novalidate
+      autocomplete="off">
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-3">
+      <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Top yesterday <span
+        *ngIf="loadingYesterday" class="fa fa-spinner fa-spin"></span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="newPostUrl">New post: <a href="{{newPostUrl}}">New post</a></div>
+<form #retweetsPublishTodayForm="ngForm" class="form-horizontal" (ngSubmit)="publishRetweetsToday()" novalidate
+      autocomplete="off">
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-3">
+      <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Top today <span
+        *ngIf="loadingToday" class="fa fa-spinner fa-spin"></span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="newPostUrl">New post: <a href="{{newPostUrl}}">New post</a></div>
+<form #retweetsPublishWeeklyForm="ngForm" class="form-horizontal" (ngSubmit)="publishRetweetsWeekly()" novalidate
+      autocomplete="off">
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-3">
+      <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Top weekly <span
+        *ngIf="loadingWeekly" class="fa fa-spinner fa-spin"></span>
+      </button>
+    </div>
+  </div>
+</form>

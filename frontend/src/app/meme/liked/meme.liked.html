@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <mm-navbar [profile]="profile"></mm-navbar>
+    <h1>{{title}}</h1>
+
+    <div *ngIf="!ctrl.memes.length">No liked memes.</div>
+
+    <div *ngIf="memes.length" ui-scroll-viewport class="viewport" id="viewport-serviceDatasource" style="height: 600px">
+        <div ui-scroll="meme in ctrl.datasource" class="item">
+            <p><b>{{meme.title}}</b></p>
+            <p>
+              <app-mm-meme-toolbar *ngIf="meme" meme="meme" profile="profile"></app-mm-meme-toolbar>
+            </p>
+            <img [src]="meme.url" style="max-height: 400px" />
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <mm-navbar [profile]="profile"></mm-navbar>
+</div>

@@ -1,0 +1,101 @@
+<style type="text/css">
+  .carousel-caption {
+    font-size: 200%;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  }
+
+  .carousel-indicators li {
+    display: none;
+  }
+</style>
+<div class="container-fluid">
+  <h1>Slideshow</h1>
+
+  <form #searchForm="ngForm" class="form-horizontal" novalidate>
+
+    <div class="row">
+      <div class="col-sm-6">
+
+        <carousel [interval]="carousel.interval"
+                  [noWrap]="carousel.noWrap"
+                  [showIndicators]="carousel.showIndicators"
+                  [(activeSlide)]="carousel.active"
+                  (activeSlideChange)="getPreviewImage($event)">
+          <slide *ngFor="let slide of carousel.slides; let index=index">
+
+            <div class="row form-group">
+              <div class="col-sm-12">
+                <app-meme-vote-star [meme]="slide.meme" [profile]="profile"></app-meme-vote-star>
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-sm-2 col-sm-12">
+                <p><b>{{slide.text}}</b></p>
+                <app-mm-meme-tweet [meme]="slide.meme" [profile]="profile"></app-mm-meme-tweet>
+                &nbsp;
+                <app-mm-meme-facebook-post [meme]="slide.meme" [profile]="profile"></app-mm-meme-facebook-post>
+                &nbsp;
+                <app-mm-meme-toolbar [meme]="slide.meme" [profile]="profile"></app-mm-meme-toolbar>
+                &nbsp;
+                &nbsp;
+                <a *ngIf="carousel.active >= 1" href="javascript:void(0)" (click)="previousSlide()"><i
+                  class="fa fa-angle-double-left"></i> Previous</a>
+                &nbsp;{{slide.id + 1}} of {{carousel.slides.length}}&nbsp;
+                <a *ngIf="carousel.active !== carousel.slides.length" href="javascript:void(0)" (click)="nextSlide()">Next
+                  <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+            <!--<img *ngIf="imageLoading" src="assets/images/pixel-loading-bar-768x432.jpg" style="display: block; width: 100%;">-->
+
+            <img [src]="previewImage" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+
+      </div>
+      <div class="col-sm-6">
+
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <span *ngIf="memes.length === 0" id="noResults">No memes to display.</span>
+            <span *ngIf="memes.length > 0">{{memes.length}} memes found.</span>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-8">
+            <label class="control-label">Tags</label>
+            <div>
+              <app-meme-tags-typeahead [(selectedTags)]="selectedTags"></app-meme-tags-typeahead>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <label for="myMemes">
+              <input type="checkbox"
+                     id="myMemes"
+                     name="myMemes"
+                     [(ngModel)]="criteria.myMemes"
+                     [checked]="criteria.myMemes"
+              />
+              My memes only</label>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <span class="btn-group pull-left" role="group">
+                <button name="search" type="button" class="btn btn-primary" [disabled]="searchForm.form.invalid"
+                        (click)="search()">Search <span *ngIf="searchLoading"
+                                                        class="fa fa-spinner fa-spin"></span></button>
+                <button name="clear" type="button" class="btn btn-secondary" (click)="clear()">Clear</button>
+            </span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,13 @@
+<span *appIsTwitterAccount>
+    <a name="tweetTwitterAccount" id="tweetTwitterAccount{{meme.id}}" (click)="openTweetModal()"
+       tooltip="Tweeted {{meme.usageCount}} times"
+       container="body">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+</span>
+<span *appIsStandardAccount>
+      <a name="tweetTwitterStandard" id="tweetTwitterStandard{{meme.id}}"
+         href="https://twitter.com/home?status={{dataUrl}}" target="_blank"
+         tooltip="Tweet image"><i
+        class="fa fa-twitter-square"></i>&nbsp;</a>
+</span>

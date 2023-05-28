@@ -1,0 +1,59 @@
+
+@import 'variables';
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap-social/bootstrap-social.css";
+@import "~dragula/dist/dragula.css";
+@import "~ngx-bootstrap/datepicker/bs-datepicker.css";
+
+@import "assets/css/ng2-smart-table-overrides";
+@import "assets/css/font-definition.css";
+@import "assets/css/override";
+@import "assets/css/bootstrap_override";
+
+//   @import "assets/css/ng2-smart-table-overrides";
+
+/* You can add global styles to this file, and also import other style files */
+.glyphicon.spinning {
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+/* login and registration */
+.content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.sign-in-text {
+  padding-right: 2em;
+}
+
+/* social buttons */
+.btn-twitter:hover, .btn-facebook:hover {
+  border: black 1px solid;
+  color: white;
+}
+
+/* fix file input styling, for Firefox only */
+//@-moz-document url-prefix() {
+//  .input-file-sm {
+//    height: auto;
+//    padding-top: 2px;
+//    padding-bottom: 1px;
+//  }
+//}

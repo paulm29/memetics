@@ -1,0 +1,23 @@
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+          <label class="col-sm-2 control-label" for="tweet">Tweet</label>
+          <div class="col-sm-8">
+            {{tweet}}
+                <textarea class="form-control"
+                       id="tweet"
+                       name="tweet"
+                       [(ngModel)]="tweet"
+                       maxlength="280"
+                       rows="5"
+                       cols="100"
+                ></textarea>
+            <p class="control-static">{{tweet?.length}}/280</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" (click)="close(true)" name="memeTweetModalAccept">Tweet</button>
+    <button class="btn btn-warning" type="button" (click)="close(false)">Cancel</button>
+</div>

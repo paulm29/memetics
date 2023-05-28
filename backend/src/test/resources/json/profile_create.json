@@ -1,0 +1,29 @@
+{
+  "id": 11,
+  "username": "profile11@email.com",
+  "email": "profile11@email.com",
+  "nickname": "updated_nickname",
+  "firstName": "updated_firstName",
+  "lastName": "updated_lastName",
+  "city": "city",
+  "state": "state",
+  "country": "country",
+  "webSite": "webSite",
+  "modifiedDate": "0",
+  "createdDate": "0",
+  "role": "ROLE_ADMIN",
+  "socialMediaSignin": "TWITTER",
+  "following":[
+    {
+      "follower":{"id":11,"username":"profile11@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile11@email.com","nickname":"nickname1","country":"","firstName":"First1","lastName":"Last1","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile11@email.com"},
+      "following":{"id":12,"username":"profile12@email.com","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true,"email":"profile12@email.com","nickname":"nickname2","country":"","firstName":"First2","lastName":"Last2","city":null,"state":null,"webSite":null,"modifiedDate":0,"createdDate":0,"role":"ROLE_ADMIN","socialMediaSignin":"TWITTER","version":0,"userId":"profile12@email.com"}
+    }
+  ],
+  "followers": [],
+  "userId": "string",
+  "version": 0,
+  "accountNonExpired": false,
+  "accountNonLocked": false,
+  "credentialsNonExpired": false,
+  "enabled": false
+}

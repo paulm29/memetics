@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <h3>{{formTitle}}
+    <app-back-button></app-back-button>
+  </h3>
+
+  <form #memeForm="ngForm" class="form-horizontal" novalidate autocomplete="off">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row form-group required" appShowValidation>
+          <label class="col-sm-2 control-label" for="title">Title</label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="title"
+                   name="title"
+                   [(ngModel)]="meme.title"
+                   maxlength="100"
+                   required
+            />
+          </div>
+        </div>
+        <div *ngIf="!meme.id" class="row form-group required" appShowValidation>
+          <label class="col-sm-2 control-label" for="file">Upload</label>
+          <div class="col-sm-6">
+            <input class="form-control input-file-sm"
+                   type="file"
+                   id="file"
+                   name="file"
+                   (change)="upload($event)"
+            />
+          </div>
+        </div>
+        <div *ngIf="!meme.id" class="row form-group required" appShowValidation>
+          <label class="col-sm-2 control-label" for="url">URL</label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="url"
+                   name="url"
+                   [(ngModel)]="meme.url"
+                   maxlength="255"
+                   required
+                   placeholder="http://"
+            />
+          </div>
+          <div *ngIf="uploading"><span class="fa fa-spinner fa-spin"></span> uploading...</div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label">Tags</label>
+          <div class="col-sm-6">
+            <app-mm-meme-tags [addNew]="true" [meme]="meme"></app-mm-meme-tags>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label" for="caption">Caption</label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="caption"
+                   name="caption"
+                   [(ngModel)]="meme.caption"
+                   maxlength="280"
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-sm-2 control-label" for="credits">Credits</label>
+          <div class="col-sm-6">
+            <input class="form-control"
+                   id="credits"
+                   name="credits"
+                   [(ngModel)]="meme.credits"
+                   maxlength="100"
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="offset-sm-2 col-sm-6">
+            <label for="originalContent">
+              <input type="checkbox"
+                     id="originalContent"
+                     name="originalContent"
+                     [(ngModel)]="meme.originalContent"
+              />
+              Original content</label>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="offset-sm-2 col-sm-6">
+            <p>
+              <span class="btn-group" role="group">
+                  <button name="submit" type="button" class="btn btn-primary"
+                          [disabled]="!memeForm.form.valid"
+                          (click)="submit()">{{submitText}} <span *ngIf="loading"
+                                                                  class="fa fa-spinner fa-spin"></span></button>
+                  <button name="clear" type="button" class="btn btn-warning"
+                          tooltip="Clear form"
+                          container="body" (click)="clear()">Clear</button>
+              </span>
+              <br/>
+              <br/>
+              <span class="btn-group" role="group">
+                  <span *ngIf="meme.id">
+                      <a [routerLink]="['/profile', profile.id, 'meme', meme.id, 'view']"
+                         class="btn btn-secondary"
+                         tooltip="View meme"
+                         container="body" id="viewLearner" name="viewLearner">View</a>
+                      <button *appIsAdmin id="delete" name="delete" type="button"
+                              class="btn btn-danger"
+                              tooltip="Delete meme"
+                              container="body" (click)="deleteHandler.emit()">Delete</button>
+                  </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6" *ngIf="meme.url">
+        <span *ngIf="meme.usageCount">Tweeted <b>{{meme.usageCount}}</b> time(s)</span>
+        <a name="previewNewWindow" id="previewNewWindow{{meme.id}}" href="{{meme.url}}" target="_blank">Preview new
+          window</a><br/>
+        <img [src]="meme.url" mm-resize/>
+      </div>
+    </div>
+  </form>
+
+  <app-help-meme></app-help-meme>
+
+</div>

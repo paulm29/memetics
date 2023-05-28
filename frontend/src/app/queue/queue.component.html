@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <h1>Queue</h1>
+
+  <p>Add text-only tweet</p>
+  <div class="row">
+    <div class="col-sm-6">
+        <textarea class="form-control"
+                  id="tweet"
+                  name="tweet"
+                  [(ngModel)]="newTweet"
+                  maxlength="280"
+                  rows="3"
+                  cols="150"
+        ></textarea>
+      <p class="control-static">{{newTweet?.length}}/280</p>
+    </div>
+    <div class="col-sm-6">
+      <button id="addTweet" name="addTweet" class="btn btn-sm btn-secondary" (click)="addTweet()"
+              [disabled]="newTweet?.length === 0">Add tweet
+      </button>
+    </div>
+  </div>
+
+  <div>Number of items in queue: {{queue?.length}}
+    <ng-container *ngIf="queue?.length > 0">
+      <!--<button id="exportCsv" name="exportCsv" class="btn btn-sm btn-secondary" ng-csv="getCsvArray()"-->
+      <!--csv-header="getCsvHeader()"-->
+      <!--filename="export.csv">Export as CSV-->
+      <!--</button>-->
+
+      <angular2csv id="exportCsv" name="exportCsv" class="btn btn-sm btn-secondary" [data]="getCsvArray()"
+                   [options]="options"
+                   filename="export">Export as CSV
+      </angular2csv>
+    </ng-container>
+  </div>
+
+  <div *ngIf="queue?.length > 0">
+    <div [dragula]='"bag-one"' [dragulaModel]="queue">
+      <ng-container *ngFor="let item of queue">
+        <app-queue-item [item]="item" [profile]="profile" (itemChanged)="onItemChanged()"></app-queue-item>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

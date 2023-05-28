@@ -1,0 +1,8 @@
+<button *ngIf="!isFollowing(profile,otherProfile)" (click)="follow()" id="follow" name="follow"
+        class="btn btn-primary" type="button" tooltip="Follow" container="body"
+        role="button">Follow
+</button>
+<button *ngIf="isFollowing(profile,otherProfile)" (click)="unfollow()" id="unfollow" name="unfollow"
+        class="btn btn-primary" type="button" tooltip="Unfollow" container="body"
+        role="button">Unfollow
+</button>

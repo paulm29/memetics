@@ -1,0 +1,26 @@
+<input id="tags"
+       name="tags"
+       [(ngModel)]="tagInputText"
+       [ngModelOptions]="{ debounce: { 'default': 200 } }"
+       [typeahead]="getTags()"
+       [typeaheadMinLength]="1"
+       [typeaheadScrollable]="true"
+       [typeaheadOptionsInScrollableView]="10"
+       [typeaheadOptionField]="'name'"
+       [typeaheadOptionsLimit]="10"
+       (typeaheadLoading)="changeTypeaheadLoading($event)"
+       (typeaheadOnSelect)="onSelect($event)"
+       (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+       (input)="onInputChange()"
+       placeholder="Search for an existing tag or add a new one"
+       class="form-control col-sm-12"/>
+
+<div *ngIf="typeaheadNoResults===true">
+  Tag not found <a href="javascript:void(0)" (click)="addNewTag()">create new tag</a>
+</div>
+
+<div class="row col-sm-12">
+  <span *ngFor='let tag of meme.tags'>{{tag.name}}
+    <a (click)="deleteTag(tag.id)"><i class="fa fa-close" tooltip="delete tag"></i></a> &nbsp;&nbsp;
+  </span>
+</div>

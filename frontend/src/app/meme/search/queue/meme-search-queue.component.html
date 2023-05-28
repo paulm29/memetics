@@ -1,0 +1,5 @@
+<app-queue-toolbar *ngIf="profile && meme && queue"
+                   [profile]="profile"
+                   [meme]="meme"
+                   [queue]="queue"
+                   (queueChanged)="onQueueChanged()"></app-queue-toolbar>

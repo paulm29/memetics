@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <h1>Manage memes</h1>
+
+  {{memes?.length}} memes found.
+  <div *ngIf="memes?.length">
+    <ng2-smart-table [settings]="settings" [source]="source"
+                     (userRowSelect)="onUserRowSelect($event)"
+                     (createConfirm)="onCreateConfirm($event)"
+                     (editConfirm)="onEditConfirm($event)"
+                     (deleteConfirm)="onDeleteConfirm($event)"
+    ></ng2-smart-table>
+  </div>
+</div>

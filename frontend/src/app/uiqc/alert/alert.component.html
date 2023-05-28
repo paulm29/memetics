@@ -1,0 +1,29 @@
+<div>
+  <ng-container *ngIf="alerts?.length > 0">
+    <div *ngFor="let alert of alerts" class="{{alert.alertClass}}">
+      <button type="button" class="close" (click)="closeAlert(alert)">
+        <span aria-hidden="true">×</span>
+        <span class="sr-only">Close message</span>
+      </button>
+      <span *ngIf="alert.msg" [innerHTML]="alert.msg"></span>
+
+      <span *ngIf="alert.errorId">
+        <br>
+        Please contact QCAA Helpdesk via
+        <a href="mailto:helpdesk@qcaa.qld.edu.au?subject=QCAA error {{alert.errorId}}&body=
+            Username: {{user.username}}%0D%0A
+            Name: {{user.givenNames}} {{user.surname}}%0D%0A
+            Message: {{alert.msg}}%0D%0A
+            Error ID: {{alert.errorId}}%0D%0A
+            %0D%0A
+            Please check and complete your details above and enter any relevant information below before sending.%0D%0A"
+        >email</a> or call 3864 0278.
+        <br/>
+        Error ID: <strong>{{alert.errorId}}</strong>
+      </span>
+
+    </div>
+
+    <br/>
+  </ng-container>
+</div>

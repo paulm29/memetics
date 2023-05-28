@@ -1,0 +1,35 @@
+<dataset>
+    <profile
+            profile_id="11"
+            email="profile11@email.com"
+            first_name="First1"
+            last_name="Last1"
+            nickname="nickname1"
+            country="Australia"
+            password="password1"
+            role="ROLE_ADMIN"
+            sign_in_provider="TWITTER"
+            created_date="1970-01-01 10:00:00"
+            modified_date="1970-01-01 10:00:00"
+    />
+
+    <meme meme_id="1"
+          profile_id="11"
+          title="title1"
+          credits="credits1"
+          caption="caption1"
+          original_content="0"
+          url="http://"
+          delete_link="http://"
+          usage_count="1"
+          duplicate="2"
+          created_date="1970-01-01 10:00:00"
+          modified_date="1970-01-01 10:00:00"
+    />
+
+    <vote vote_id="1"
+          meme_id="1"
+          profile_id="11"
+          score="1"
+    />
+</dataset>

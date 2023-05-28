@@ -1,0 +1,175 @@
+<div class="container-fluid">
+  <h1>{{title}}</h1>
+  <p>This page is used create a newsletter, or rather the JSON for a static page that will present the newsletter. The
+    newsletter has several sections:</p>
+  <ul>
+    <li>Federal politics</li>
+    <li>Crime</li>
+    <li>Immigration and population</li>
+    <li>Islam</li>
+    <li>Economics</li>
+    <li>World</li>
+  </ul>
+
+  <h2>Records</h2>
+  <h3>newspaper_edition</h3>
+  <table class="table col-xs-6">
+    <tr>
+      <th class="col-xs-2">id</th>
+      <th class="col-xs-2">publish_date</th>
+      <th class="col-xs-2">publish_time</th>
+    </tr>
+  </table>
+
+  <br/>
+  <br/>
+
+  <h3>newspaper_article</h3>
+  <table class="table col-xs-6">
+    <tr>
+      <th class="col-xs-2">id</th>
+      <th class="col-xs-2">twitter_status_id</th>
+      <th class="col-xs-2">category</th>
+    </tr>
+  </table>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Search</h2>
+      <form #retweetsForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" novalidate autocomplete="off">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="startDate">Search date</label>
+          <div class="col-sm-3">
+            <input type="text"
+                   class="form-control"
+                   [maxDate]="today"
+                   #dp="bsDatepicker"
+                   id="startDate"
+                   name="startDate"
+                   bsDatepicker [(bsValue)]="startDate">
+          </div>
+          <div class="col-sm-7"></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="time">Search time</label>
+          <div class="col-sm-3">
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="time"
+                   name="time"
+                   maxlength="5"
+                   id="time" placeholder="20:30"/>
+          </div>
+          <div class="col-sm-7"></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-3">
+            <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Search <span
+              *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+            </button>
+          </div>
+          <!--<div class="col-sm-offset-3 col-sm-3">-->
+          <!--<button class="btn btn-primary" [disabled]="false" name="registerModalAccept">Create Moment <span-->
+          <!--*ngIf="loading" class="fa fa-spinner fa-spin"></span>-->
+          <!--</button>-->
+          <!--</div>-->
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <h2>Publish</h2>
+      <form #retweetsForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" novalidate autocomplete="off">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="startDate">Publish date</label>
+          <div class="col-sm-3">
+            <input type="text"
+                   class="form-control"
+                   [maxDate]="today"
+                   #dp="bsDatepicker"
+                   id="startDate"
+                   name="startDate"
+                   bsDatepicker [(bsValue)]="startDate">
+          </div>
+          <div class="col-sm-7"></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="time">Publish time</label>
+          <div class="col-sm-3">
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="time"
+                   name="time"
+                   maxlength="5"
+                   id="time" placeholder="20:30"/>
+          </div>
+          <div class="col-sm-7"></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-3">
+            <button class="btn btn-primary" [disabled]="false" name="registerModalAccept" (click)="generateDownloadJsonUri()">Publish <span
+              *ngIf="loadingPublish" class="fa fa-spinner fa-spin"></span>
+            </button>
+          </div>
+          <!--<div class="col-sm-offset-3 col-sm-3">-->
+          <!--<button class="btn btn-primary" [disabled]="false" name="registerModalAccept">Create Moment <span-->
+          <!--*ngIf="loading" class="fa fa-spinner fa-spin"></span>-->
+          <!--</button>-->
+          <!--</div>-->
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            lll
+            <a class="btn btn-clear" title="Download JSON" [href]="downloadJsonHref" download="download.json">kkkkkkkkkkkkkkkkkk</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <hr/>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div #tweetList *ngFor="let stat of topTweets; let i=index">
+
+        <div [innerHtml]="stat.html | noSanitize"></div>
+
+        <form #addArticleForm="ngForm" class="form-horizontal" (ngSubmit)="addArticle(addArticleForm.form.controls['category_' + i]?.value, stat)" novalidate
+              autocomplete="off">
+          <div class="form-group">
+            <div class="col-sm-6">
+              <select class="form-control"
+                      id="category_{{i}}"
+                      name="category_{{i}}"
+                      ngModel
+                      required>
+                <option *ngFor="let cat of categories" [ngValue]="cat">{{cat}}</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-primary" type="submit" [disabled]="!addArticleForm.form.controls['category_' + i]?.value">Add article</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div #articleList *ngFor="let article of articles; let i=index">
+
+        Category: {{article.category}}<br/>
+
+        <div [innerHtml]="article.oembedTweet.html | noSanitize"></div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+

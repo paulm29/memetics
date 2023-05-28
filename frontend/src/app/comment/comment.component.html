@@ -1,0 +1,71 @@
+<h4>Add comment</h4>
+
+<div *ngIf="!meme.comments.length"><p class="text-muted">No captions or comments yet. You can be the first!</p></div>
+
+<form #addCommentForm="ngForm" class="form-horizontal">
+  <div class="row">
+    <div class="col-sm-12">
+      <label for="commentText"><b>Comment or caption:</b></label>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-12">
+        <textarea
+          id="commentText"
+          name="commentText"
+          ngModel
+          maxlength="280"
+          rows="3"
+          cols="90"
+        ></textarea>
+      <p class="control-static">{{addCommentForm.form.controls['commentText']?.value.length}}/280</p>
+      <button id="addComment" name="addComment"
+              [disabled]="addCommentForm.form.controls['commentText']?.value.length === 0"
+              class="btn btn-sm btn-primary"
+              type="button" (click)="addComment(addCommentForm)">Add comment
+      </button>
+    </div>
+  </div>
+</form>
+
+<br/>
+<h4 *ngIf="meme?.comments?.length">Previous comments: <span id="commentCount">{{meme?.comments?.length}}</span></h4>
+
+<ng-container *ngFor="let comment of meme.comments">
+  <div name="comment" id="comment{{comment.id}}">
+    <div class="row">
+      <div class="col-sm-6">
+        <hr/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"><b>{{comment.createdDate | date : "dd/MM/yyyy" }}</b></div>
+      <div class="col-sm-4">
+        <ng-container *ngIf="!!comment.profile">
+          <b>Author: <a
+            [routerLink]="['/profile', profile.id, 'profile-view', comment.profile.id]">{{comment.profile.nickname}}</a></b>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        {{comment.commentText}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <app-mm-meme-tweet [caption]="comment.commentText"
+                           [meme]="meme"
+                           [profile]="profile"
+                           *appIsTwitterAccount></app-mm-meme-tweet>
+        <app-mm-comment-toolbar *ngIf="profile" [comment]="comment" [profile]="profile"
+                                (commentUpdated)="commentUpdatedCallback()"></app-mm-comment-toolbar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <hr/>
+      </div>
+    </div>
+  </div>
+</ng-container>

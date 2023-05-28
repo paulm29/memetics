@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <h1>View meme
+    <app-back-button></app-back-button>
+  </h1>
+  <form name="memeForm" class="form-horizontal" *ngIf="!loading">
+
+    <div class="row form-group">
+      <div class="col-sm-6">
+
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <app-meme-vote-star *ngIf="meme && meme.votes" [meme]="meme" [profile]="profile"></app-meme-vote-star>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-sm-3 control-label"><b>Title</b></label>
+          <div class="col-sm-9 form-control-static">
+            {{meme.title}}
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-sm-3 control-label"><b>Caption</b></label>
+          <div class="col-sm-9 form-control-static">
+            {{meme.caption}}<span *ngIf="!meme.caption"
+                                  class="text-muted">No caption. Add your own in the comments.</span>
+          </div>
+        </div>
+
+        <div *ngIf="meme.credits" class="row form-group">
+          <label class="col-sm-3 form-control-static"><b>Credits</b></label>
+          <div class="col-sm-9">
+            {{meme.credits}}
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-sm-3 form-control-static"><b>Tags</b></label>
+          <div class="col-sm-9">
+            <span *ngIf="meme?.tags?.length === 0" class="text-muted">no tags</span>
+            <span *ngFor='let tag of meme.tags'>{{tag.name}}</span>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <b>Share</b>
+          </div>
+          <div class="col-sm-9">
+            <app-mm-meme-facebook-post *ngIf="meme" [meme]="meme" [profile]="profile"></app-mm-meme-facebook-post>
+
+            <app-mm-meme-tweet *ngIf="meme" [meme]="meme" [profile]="profile"></app-mm-meme-tweet>
+          </div>
+        </div>
+
+        <!--<div class="row form-group">-->
+        <!--<label class="col-sm-3 form-control-static"><b>Tweeted</b></label>-->
+        <!--<div class="col-sm-9">-->
+        <!--<b>{{meme.usageCount}}</b> time(s)-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <app-queue-toolbar *ngIf="meme" [profile]="profile" [meme]="meme" [showLabel]="true"></app-queue-toolbar>
+
+        <div *ngIf="canEdit()" class="row form-group">
+          <div class="offset-sm-3 col-sm-9">
+            <span class="btn-group" role="group">
+              <a [routerLink]="['/profile', profile.id, 'meme', meme.id, 'edit']" class="btn btn-secondary"
+                 tooltip="edit"
+                 container="body" id="editLearner">Edit</a>
+            </span>
+          </div>
+        </div>
+
+        <app-meme-manage [meme]="meme"></app-meme-manage>
+
+      </div>
+
+      <div class="col-sm-6">
+
+        <a name="previewNewWindow" id="previewNewWindow{{meme.id}}" href="{{meme.url}}" target="_blank">Preview new
+          window</a>
+        <div class="image-container">
+          <img alt="{{meme.title}}" id="previewImage" [src]="meme.url" appImageResize/>
+          <div class="after">Twitter inline preview</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+  <app-comment *ngIf="meme && profile" [meme]="meme" [profile]="profile"></app-comment>
+
+  <app-help-tweeting></app-help-tweeting>
+</div>

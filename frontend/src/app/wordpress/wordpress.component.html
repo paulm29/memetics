@@ -1,0 +1,143 @@
+<div class="container-fluid">
+  <h1>{{title}}</h1>
+
+  <h2>New post</h2>
+  <form #retweetsForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" novalidate autocomplete="off">
+
+    <!--date-->
+    <!--author-->
+    <!--title-->
+    <!--excerpt-->
+    <!--content-->
+    <!--categories-->
+    <!--featured image-->
+    <!--tags-->
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="date">Date</label>
+      <div class="col-sm-10">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="newPost.date"
+               name="date"
+               maxlength="255"
+               id="date" placeholder="date" />
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="title">Author</label>
+      <div class="col-sm-10">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="newPost.author"
+               name="author"
+               maxlength="255"
+               id="author" placeholder="author" />
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="title">Title</label>
+      <div class="col-sm-10">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="newPost.title"
+               name="title"
+               maxlength="255"
+               id="title" placeholder="title" />
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="excerpt">Excerpt</label>
+      <div class="col-sm-10">
+        <textarea class="form-control"
+                  id="excerpt"
+                  name="tweet"
+                  [(ngModel)]="newPost.excerpt"
+                  maxlength="280"
+                  rows="3"
+                  cols="150"
+        ></textarea>
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="content">Content</label>
+      <div class="col-sm-3">
+        <textarea class="form-control"
+                  id="content"
+                  name="content"
+                  [(ngModel)]="newPost.content"
+                  maxlength="280"
+                  rows="3"
+                  cols="150"
+        ></textarea>
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="excerpt">Categories</label>
+      <div class="col-sm-3">
+        <textarea class="form-control"
+                  id="categories"
+                  name="categories"
+                  [(ngModel)]="newPost.categories"
+                  maxlength="280"
+                  rows="3"
+                  cols="150"
+        ></textarea>
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="tags">Tags</label>
+      <div class="col-sm-3">
+        <textarea class="form-control"
+                  id="tags"
+                  name="tags"
+                  [(ngModel)]="newPost.tags"
+                  maxlength="280"
+                  rows="3"
+                  cols="150"
+        ></textarea>
+      </div>
+      <!--<div class="col-sm-7">Default start date is 2 days ago to account for a possible weekend.</div>-->
+    </div>
+
+    <div class="form-group">
+      {{categories | json}}
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3">
+        <button class="btn btn-primary" type="submit" [disabled]="false" name="registerModalAccept">Create <span
+          *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <h2>Get latest posts</h2>
+  <button class="btn btn-primary" (click)="getPosts()">Get latest posts <span
+    *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+  </button>
+  <hr/>
+  <ng-container *ngFor="let post of posts">
+    <div class="row">
+      <div class="col-sm-12">Date: {{post.date | date : "dd/MM/yyyy HH:mm" }}</div>
+      <div class="col-sm-12">Modified: {{post.modified | date : "dd/MM/yyyy HH:mm"}}</div>
+      <div class="col-sm-12">Title: {{post.title.rendered}}</div>
+      <div class="col-sm-12">Excerpt: {{post.excerpt.rendered}}</div>
+    </div>
+    <hr/>
+  </ng-container>
+</div>

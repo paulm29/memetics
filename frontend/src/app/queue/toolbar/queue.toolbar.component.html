@@ -1,0 +1,26 @@
+<ng-template #buttons>
+  <span *ngIf="profile" class="btn-group" role="group">
+    <a *ngIf="!queueItem" (click)="addToQueue()"
+       name="addToQueue"
+       id="addToQueue{{meme.id}}"
+       class="btn btn-sm btn-secondary"
+       tooltip="Add to queue"
+       container="body"><i class="fa fa-plus"></i></a>
+    <a *ngIf="queueItem" (click)="removeFromQueue()"
+       id="removeFromQueue{{queueItem.id}}"
+       class="btn btn-sm btn-secondary {{getClass(queueItem)}}"
+       tooltip="Remove from queue"
+       container="body"><i class="fa fa-minus"></i></a>
+  </span>
+</ng-template>
+
+<ng-container *ngIf="!showLabel then buttons"></ng-container>
+
+<div *ngIf="showLabel" class="row form-group">
+  <div class="col-sm-3">
+    <b>Queue</b>
+  </div>
+  <div class="col-sm-9">
+    <ng-container *ngTemplateOutlet="buttons"></ng-container>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<hr/>
+
+<div class="row">
+  <div class="col-sm-2">
+    <ng-container *ngIf="item.meme">
+      <img alt="{{item.meme.title}}}" [src]="item.meme.url" style="max-height: 150px; max-width: 150px"/><br/><br/>
+      <app-queue-toolbar *appIsTwitterAccount [profile]="item.profile"
+                         [meme]="item.meme" (queueChanged)="onQueueChanged()"></app-queue-toolbar>
+      &nbsp;<a href="{{item.meme.url}}" target="_blank">link</a>
+    </ng-container>
+    <ng-container *ngIf="isTextOnly()">
+      Text-only tweet<br/>
+      <a id="removeTweet{{item.meme ? item.meme.id : '0'}}" name="removeTweet" href="javascript:void(0)"
+         [ngClass]="{textOnly: isTextOnly()}" (click)="removeTextOnlyTweet()">Remove</a>
+    </ng-container>
+  </div>
+  <div class="col-sm-10">
+    <form #queueItemForm="ngForm" name="queueItemForm{{item.id}}" class="form-horizontal">
+      <div class="row form-group">
+        <label class="col-sm-1 control-label" for="content">Content</label>
+        <div class="col-sm-9">
+            <textarea class="form-control"
+                      id="content"
+                      name="content"
+                      [ngClass]="{textOnly: isTextOnly()}"
+                      [(ngModel)]="item.content"
+                      maxlength="{{maxlength}}"
+                      rows="2"
+            ></textarea>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-sm-1 control-label" for="hashtags">Hashtags</label>
+        <div class="col-sm-9">
+            <textarea class="form-control"
+                      id="hashtags"
+                      name="hashtags"
+                      [ngClass]="{textOnly: isTextOnly()}"
+                      [(ngModel)]="item.hashtags"
+                      maxlength="{{maxlength}}"
+                      rows="1"
+            ></textarea>
+          <p class="control-static pull-right">{{item.content.length + item.hashtags.length}}/{{maxlength}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-sm-1 col-sm-9">
+          <div class="pull-right">
+            <button id="edit{{item?.id}}" name="edit" class="btn btn-sm btn-secondary"
+                    (click)="edit()"
+                    [ngClass]="{textOnly: isTextOnly()}"
+                    [disabled]="!canEdit()"
+            >Edit
+            </button>
+
+            <!-- TODO move to bottom -->
+            <!-- TODO move to top -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr/>

@@ -1,0 +1,5 @@
+#hibernate:
+#  memetics:
+#    jdbcUrl: jdbc:h2:file:/home/paul/projects/memetics/db;SCHEMA=MEMETICS
+
+sendTweetsViaScheduler: false

@@ -1,0 +1,14 @@
+<div *ngIf="profile" class="btn-group" role="group">
+  <a id="view{{meme.id}}" [routerLink]="['/profile', profile.id, 'meme', meme.id, 'view']" tooltip="View"
+     container="body" role="button">
+    <i class="fa fa-eye"></i>
+  </a>
+  <ng-container *ngIf="profile.id === meme.profile.id">
+    &nbsp;
+    &nbsp;
+    <a id="edit{{meme.id}}" [routerLink]="['/profile', profile.id, 'meme', meme.id, 'edit']"
+       tooltip="Edit" container="body" role="button">
+      <i class="fa fa-pencil-square-o"></i>
+    </a>
+  </ng-container>
+</div>

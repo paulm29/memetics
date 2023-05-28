@@ -1,0 +1,27 @@
+{
+  "id": 11,
+  "accountNonExpired": false,
+  "accountNonLocked": false,
+  "city": "city",
+  "country": "country",
+  "createdDate": "2017-04-13T12:07:07Z",
+  "credentialsNonExpired": false,
+  "enabled": true,
+  "email": "profile11@email.com",
+  "followers": [],
+  "following": [],
+  "hashtagFavourites": [],
+  "nickname": "updated_nickname",
+  "firstName": "updated_firstName",
+  "lastName": "updated_lastName",
+  "modifiedDate": "2017-04-13T12:07:07Z",
+  "role": "ROLE_ADMIN",
+  "socialMediaSignin": "TWITTER",
+  "state": "state",
+  "userId": "string",
+  "username": "profile11@email.com",
+  "twitter": true,
+  "version": 0,
+  "webSite": "webSite"
+}
+

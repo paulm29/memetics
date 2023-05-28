@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <h1>{{title}}</h1>
+    <p>Note:</p>
+    <ul>
+        <li>The Delete option will only work with your own account.</li>
+        <li>PageSize is not necessarily the number of tweets that will be processed, because Twitter imposes is its own
+            limits.
+        </li>
+        <li>A corrupt image may prevent downloads proceeding. Manually download and unlike the image if this occurs.
+        </li>
+    </ul>
+    <form #profileForm="ngForm" class="form-horizontal" (ngSubmit)="submit()" autocomplete="off" novalidate>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Profile (without the @)</label>
+            <div class="col-sm-3">
+                <input class="form-control"
+                       id="profile"
+                       name="profile"
+                       [(ngModel)]="criteria.twitterProfile"
+                       maxlength="30"
+                       required
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Folder (e.g. c:/_pol/)</label>
+            <div class="col-sm-3">
+                <input class="form-control"
+                       id="folder"
+                       name="folder"
+                       [(ngModel)]="criteria.folder"
+                       maxlength="30"
+                       required
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Page size (default 50)</label>
+            <div class="col-sm-3">
+                <input class="form-control"
+                       id="pageSize"
+                       name="pageSize"
+                       [(ngModel)]="criteria.pageSize"
+                       required
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Delete tweet after downloading image</label>
+            <div class="col-sm-3">
+                <input class="form-control"
+                       type="checkbox"
+                       id="deleteTweet"
+                       name="deleteTweet"
+                       [(ngModel)]="criteria.deleteTweet"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-3">
+                <span class="btn-group" role="group">
+                    <button name="submit" class="btn btn-primary" [disabled]="profileForm.form.invalid">Download <span
+                      *ngIf="loading" class="fa fa-spinner fa-spin"></span></button>
+                    <button name="clear" class="btn btn-secondary" (click)="clear()">Clear</button>
+                </span>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="downloadStat" class="row">
+        <hr/>
+        <p>Page size: {{downloadStat.pageSize}}</p>
+        <p>Tweets Received: {{downloadStat.tweetsReceived}}</p>
+        <p>Images downloaded: {{downloadStat.imagesDownloaded}}</p>
+        <p>Liked remaining: {{downloadStat.tweetRemaining}}</p>
+    </div>
+</div>

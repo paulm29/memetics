@@ -1,0 +1,8 @@
+<ng-container *ngIf="timeoutWarning">
+  <div class="card bg-warning">
+    <div class="card-body">
+      <h3>For your security you are about to be logged out.</h3>
+      <progressbar [max]="30" [value]="30" class="progress-striped" type="warning">{{idleState}}</progressbar>
+    </div>
+  </div>
+</ng-container>

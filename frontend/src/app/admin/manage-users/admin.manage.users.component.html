@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <h1>Manage profiles</h1>
+
+  {{profiles?.length}} profiles found.
+  <div *ngIf="profiles?.length">
+    <ng2-smart-table [settings]="settings" [source]="source"
+                     (userRowSelect)="onUserRowSelect($event)"
+                     (createConfirm)="onCreateConfirm($event)"
+                     (editConfirm)="onEditConfirm($event)"
+                     (deleteConfirm)="onDeleteConfirm($event)"
+    ></ng2-smart-table>
+  </div>
+</div>

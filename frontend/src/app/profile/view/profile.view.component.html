@@ -1,0 +1,162 @@
+<div class="container-fluid">
+    <h1>{{title}}</h1>
+    <div class="row">
+        <label class="col-sm-2 control-label">Nickname</label>
+        <div class="col-sm-3">
+            {{profileView?.nickname}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">Country</label>
+        <div class="col-sm-3">
+            {{profileView?.country}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">First name</label>
+        <div class="col-sm-3">
+            {{profileView?.firstName}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">Last name</label>
+        <div class="col-sm-3">
+            {{profileView?.lastName}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">City</label>
+        <div class="col-sm-3">
+            {{profileView?.city}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">State</label>
+        <div class="col-sm-3">
+            {{profileView?.state}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">Web site</label>
+        <div class="col-sm-3">
+            {{profileView?.webSite}}
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label">Sign up date</label>
+        <div class="col-sm-3">
+            {{profileView?.createdDate | date : "dd/MM/yyyy" }}
+        </div>
+    </div>
+    <div class="row" *ngIf="ownProfile">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+            {{profileView?.email}}
+        </div>
+    </div>
+    <div class="row" *ngIf="ownProfile">
+      <div class="offset-2 col-sm-3">
+            <br/>
+        <a [routerLink]="['/profile', profile.id, 'profileEdit', profile.id]" class="btn btn-sm btn-primary"
+           tooltip="Edit" container="body" id="editProfile">Edit</a>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <div class="row" *ngIf="!ownProfile">
+      <div class="offset-2 col-sm-3">
+            <br/>
+            <mm-follow-actions [profile]="profile" [otherProfile]="profileView" [updateCallback]="updateCallback"></mm-follow-actions>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+
+    <hr/>
+
+    <h4>Statistics</h4>
+
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <table>
+                <thead>
+                    <tr>
+                        <td class="col-sm-4"></td>
+                        <td class="col-sm-2"></td>
+                        <td class="col-sm-4"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Followers:</td>
+                    <td>{{stats?.followers}}</td>
+                  <td *ngIf="ownProfile"><a [routerLink]="['/profile', profile.id, 'followersView', profile.id]"
+                                            class="btn btn-secondary" tooltip="View" container="body"
+                                            id="viewFollowing">View Followers</a></td>
+                </tr>
+                <tr>
+                    <td>Following:</td>
+                    <td>{{stats?.following}}</td>
+                  <td *ngIf="ownProfile"><a [routerLink]="['/profile', profile.id, 'followingView', profile.id]"
+                                            class="btn btn-secondary" tooltip="View"
+                                            container="body" id="viewFollowers">View Following</a></td>
+                </tr>
+                <tr>
+                    <td>Created:</td>
+                    <td>{{stats?.memesCreated}}</td>
+                  <td *ngIf="ownProfile"><a
+                    [routerLink]="['/profile', profile.id, 'memeSearch', {profile: profile.id, myMemes: true}]"
+                    class="btn btn-secondary"
+                    tooltip="View" container="body" id="viewMemes">View My Memes</a></td>
+                </tr>
+                <tr>
+                    <td>Likes on my memes from others:</td>
+                    <td>{{stats?.memesByMeLikedByOthers}}</td>
+                    <td *ngIf="ownProfile"></td>
+                </tr>
+                <tr>
+                    <td>My Likes:</td>
+                    <td>{{stats?.memesLikedByMe}}</td>
+                  <td *ngIf="ownProfile"><a [routerLink]="['/profile', profile.id, 'memeLiked']"
+                                            class="btn btn-secondary" tooltip="View liked memes"
+                                            container="body" id="viewLikedMemes">View Liked memes</a></td>
+                </tr>
+                <tr>
+                    <td>Comments:</td>
+                    <td>{{stats?.commentsMine}}</td>
+                  <td *ngIf="ownProfile"><a [routerLink]="['/profile', profile.id, 'commentsViewAll']"
+                                            class="btn btn-secondary" tooltip="View"
+                                            container="body" id="viewComments">View Comments</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <!--<div class="row">-->
+        <!--<div *ngIf="ownProfile" class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+  <!--<a [routerLink]=['/profile', profile.id, 'replace me']"profile.memeSearch({profile: profile.id, myMemes: true})" class="btn btn-secondary"-->
+                   <!--tooltip="View" container="body" id="viewMemes">View My Memes</a>-->
+  <!--<a [routerLink]=['/profile', profile.id, 'replace me']"profile.memeLiked" class="btn btn-secondary" tooltip="View liked memes"-->
+                   <!--container="body" id="viewLikedMemes">View Liked memes</a>-->
+  <!--<a [routerLink]=['/profile', profile.id, 'replace me']"profile.commentsViewAll" class="btn btn-secondary" tooltip="View"-->
+                   <!--container="body" id="viewComments">View Comments</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="ownProfile" class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+  <!--<a [routerLink]=['/profile', profile.id, 'replace me']"profile.followersView({profile: profile.id})" class="btn btn-secondary" tooltip="View"-->
+                   <!--container="body" id="viewFollowing">View Followers</a>-->
+  <!--<a [routerLink]=['/profile', profile.id, 'replace me']"profile.followingView({profile: profile.id})" class="btn btn-secondary" tooltip="View"-->
+                   <!--container="body" id="viewFollowers">View Following</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div *ngIf="ownProfile">
+        <hr/>
+        <mm-profile-hashtag-favourites [profile]="profile" [updateCallback]="updateCallback"></mm-profile-hashtag-favourites>
+    </div>
+</div>

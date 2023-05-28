@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <mm-navbar [profile]="profile"></mm-navbar>
+    <h1>{{title}}</h1>
+
+    <div *ngIf="!ctrl.memes.length">No unprocessed memes.</div>
+
+    <div class="row viewport" *ngIf="memes.length" ui-scroll-viewport id="viewport-serviceDatasource"
+         style="height: 700px">
+        <div ui-scroll="meme in ctrl.datasource" class="item">
+            <div *ngIf="!meme.updated">
+                <form name="memeForm">
+                    <img [src]="meme.url" style="max-height: 400px"/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="title">Title</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control"
+                                           id="title"
+                                           name="title"
+                                           [(ngModel)]="meme.title"
+                                           maxlength="100"
+                                           required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group required">
+                              <app-mm-meme-tags *ngIf="allTags && meme" [meme]="meme"></app-mm-meme-tags>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <p>
+                                <span class="btn-group" role="group">
+                                    <button name="update" type="button" class="btn btn-primary"
+                                            [disabled]="!ctrl.canSubmit(meme)"
+                                            container="body"
+                                            (click)="updateMeme(meme)">Update <span *ngIf="meme.loading"
+                                                                                    class="fa fa-spinner fa-spin"></span></button>
+                                    <button id="deleteLearner" name="deleteLearner" type="button" class="btn btn-danger"
+                                            tooltip="Delete meme"
+                                            container="body"
+                                            (click)="deleteMeme(meme)">Delete</button>
+                                </span>
+                                </p>
+                                <br/>
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <mm-navbar [profile]="profile"></mm-navbar>
+</div>

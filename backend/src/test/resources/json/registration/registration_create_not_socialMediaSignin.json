@@ -1,0 +1,13 @@
+{
+  "email": "test@test.com",
+  "nickname": "test",
+  "country": "Australia",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "city": "city",
+  "state": "state",
+  "webSite": "webSite",
+  "password": "password",
+  "passwordVerification": "passwordVerification",
+  "socialMediaSignin": null
+}

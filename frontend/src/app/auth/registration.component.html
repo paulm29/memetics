@@ -1,0 +1,146 @@
+<div class="container-fluid">
+  <h1 *ngIf="!profile.socialMediaSignin || (profile.socialMediaSignin === 'NONE')">Register email account</h1>
+  <h1 *ngIf="profile.socialMediaSignin && profile.socialMediaSignin !== 'NONE'">Register social media account</h1>
+
+  <form #registerForm="ngForm" (ngSubmit)="isFormValid() && register()" autocomplete="off"
+        novalidate>
+    <div class="row form-group required" appShowValidation>
+      <label class="col-sm-2 control-label" for="email">Email</label>
+      <div class="col-sm-6">
+        <input id="email"
+               name="email"
+               class="form-control"
+               maxlength="254"
+               [(ngModel)]="profile.email"
+               (blur)="duplicateEmailCheck()"
+               type="email"
+               required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-2 col-sm-4 help-block">
+        <span *ngIf="!duplicateEmailCheckLoading && isDuplicateEmail"
+              class="text-danger">Email is already taken.</span>
+        <span *ngIf="duplicateEmailCheckLoading" class="text-info"><span
+          class="fa fa-spinner fa-spin"></span> Checking if email is available</span>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!profile?.socialMediaSignin">
+      <div class="row form-group required" appShowValidation>
+        <label class="col-sm-2 control-label" for="password">Password</label>
+        <div class="col-sm-6">
+          <input type="password" id="password" name="password"
+                 class="form-control"
+                 [(ngModel)]="profile.password"
+                 required
+          />
+        </div>
+      </div>
+
+      <div class="row form-group required" appShowValidation>
+        <label class="col-sm-2 control-label" for="passwordVerification">Password verification</label>
+        <div class="col-sm-6">
+          <input type="password" id="passwordVerification" name="passwordVerification"
+                 class="form-control"
+                 [(ngModel)]="profile.passwordVerification"
+                 required
+          />
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="offset-sm-2 col-sm-4" *ngIf="passwordsDontMatch()">
+          <div class="text-danger">Passwords do not match</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="row form-group required" appShowValidation>
+      <label class="col-sm-2 control-label" for="nickname">Nickname</label>
+      <div class="col-sm-6">
+        <input id="nickname"
+               name="nickname"
+               class="form-control"
+               [(ngModel)]="profile.nickname"
+               (blur)="duplicateNicknameCheck()"
+               required/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-2 col-sm-4 help-block">
+        <span *ngIf="!duplicateNicknameCheckLoading && isDuplicateNickname" class="text-danger">Nickname is already taken.</span>
+        <span *ngIf="duplicateNicknameCheckLoading" class="text-info"><span
+          class="fa fa-spinner fa-spin"></span> Checking if nickname is available</span>
+      </div>
+    </div>
+
+    <div class="row form-group required" appShowValidation>
+      <label class="col-sm-2 control-label" for="country">Country</label>
+      <div class="col-sm-6">
+        <input id="country" name="country"
+               class="form-control"
+               [(ngModel)]="profile.country"
+               required/>
+      </div>
+    </div>
+
+    <div class="row form-group" appShowValidation>
+      <label class="col-sm-2 control-label" for="firstName">First name</label>
+      <div class="col-sm-6">
+        <input id="firstName" name="firstName"
+               class="form-control"
+               [(ngModel)]="profile.firstName"
+        />
+      </div>
+    </div>
+
+    <div class="row form-group" appShowValidation>
+      <label class="col-sm-2 control-label" for="lastName">Last name</label>
+      <div class="col-sm-6">
+        <input id="lastName" name="lastName"
+               class="form-control"
+               [(ngModel)]="profile.lastName"
+        />
+      </div>
+    </div>
+
+    <!--<div class="row form-group">-->
+    <!--<label class="col-sm-2 control-label" for="city">City</label>-->
+    <!--<div class="col-sm-6">-->
+    <!--<input id="city" name="city"-->
+    <!--class="form-control"-->
+    <!--[(ngModel)]="profile.city"-->
+    <!--/>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="row form-group" appShowValidation>
+      <label class="col-sm-2 control-label" for="state">State</label>
+      <div class="col-sm-6">
+        <input id="state" name="state" class="form-control"
+               [(ngModel)]="profile.state"
+        />
+      </div>
+    </div>
+
+    <div class="row form-group" appShowValidation>
+      <label class="col-sm-2 control-label" for="webSite">Web site</label>
+      <div class="col-sm-6">
+        <input id="webSite" name="webSite" class="form-control"
+               [(ngModel)]="profile.webSite"
+        />
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="offset-sm-2 col-sm-4">
+        <button id="register" class="btn btn-primary"
+                [disabled]="!isFormValid()">Register
+        </button>
+        <button id="cancel" class="btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
